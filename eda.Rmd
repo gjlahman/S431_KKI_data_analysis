@@ -16,6 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r message=FALSE, warning=FALSE}
 library(dplyr)
+library(tidyr)
 
 kki_demographics = read.csv('data/KKI_demographicInfo.csv')
 kki_handedness = read.csv('data/KKI_handedness.csv')
@@ -28,6 +29,8 @@ full_dat = full_join(kki_demographics, kki_mABC)
 full_dat = full_join(full_dat, kki_SRS)
 full_dat = full_join(full_dat, kki_WISC)
 full_dat = full_join(full_dat, kki_handedness)
+full_dat = full_dat %>% drop_na(c('SecondaryDiagnosis', 'CurrentlyNotTakingMeds', 'CurrentlyTakingAtomoxetine', 'CurrentlyTakingClonidine', 'mABC_TotalStandardScore', 'EdinburghHandedness_Integer'))
+full_dat = subset(full_dat, !(is.na(SRS_VERSION) & is.na(WISC_VERSION)))
 ```
 
 
@@ -37,5 +40,9 @@ Is there a statistically significant difference in predictive power of the motor
 
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
 library(ggplot2)
+```
+
+```{r}
+boxplot(mABC_TotalStandardScore ~ PrimaryDiagnosis, data = full_dat)
 ```
 

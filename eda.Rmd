@@ -1,0 +1,41 @@
+---
+title: "Exploratory Data Analysis"
+author: 
+  - "Gabriel Lahman"
+  - "Rowan Lavelle"
+  - "Jordan Majoros"
+  - "Matthew Zelenin"
+date: "11/11/2019"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+
+kki_demographics = read.csv('data/KKI_demographicInfo.csv')
+kki_handedness = read.csv('data/KKI_handedness.csv')
+kki_mABC = read.csv('data/KKI_movementAssessmentBatteryforChildren.csv')
+kki_SRS = read.csv('data/KKI_SocialResponsivenessScaleQuestionnaire.csv')
+kki_WISC = read.csv('data/KKI_WechslerIntelligenceScaleforChildren.csv')
+
+
+full_dat = full_join(kki_demographics, kki_mABC)
+full_dat = full_join(full_dat, kki_SRS)
+full_dat = full_join(full_dat, kki_WISC)
+full_dat = full_join(full_dat, kki_handedness)
+```
+
+
+## Research Question
+
+Is there a statistically significant difference in predictive power of the motor skills vs. social responsivness model when we include intelligence metrics as predictors?
+
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+library(ggplot2)
+```
+

@@ -43,6 +43,15 @@ library(ggplot2)
 ```
 
 ```{r}
-boxplot(mABC_TotalStandardScore ~ PrimaryDiagnosis, data = full_dat)
+ggplot(full_dat, aes(x=PrimaryDiagnosis, y=mABC_TotalStandardScore, color=PrimaryDiagnosis)) + geom_boxplot()
 ```
 
+```{r}
+ggplot(full_dat, aes(x=mABC_AGE, y=mABC_TotalStandardScore)) + geom_point() + geom_smooth() + geom_smooth(method = 'lm', lty = 2, col = 'red')
+```
+
+```{r}
+ggplot(subset(full_dat, PrimaryDiagnosis == 'None'), aes(x=mABC_AGE, y=mABC_TotalStandardScore)) + geom_point() + geom_smooth() + geom_smooth(method = 'lm', lty = 2, col = 'red')
+ggplot(subset(full_dat, PrimaryDiagnosis == 'ADHD'), aes(x=mABC_AGE, y=mABC_TotalStandardScore)) + geom_point() + geom_smooth() + geom_smooth(method = 'lm', lty = 2, col = 'red')
+ggplot(subset(full_dat, PrimaryDiagnosis == 'Autism'), aes(x=mABC_AGE, y=mABC_TotalStandardScore)) + geom_point() + geom_smooth() + geom_smooth(method = 'lm', lty = 2, col = 'red')
+```

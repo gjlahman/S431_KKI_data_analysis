@@ -19,6 +19,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r message=FALSE, warning=FALSE}
 library(dplyr)
 library(tidyr)
+library(alr4)
 
 kki_demographics = read.csv('data/KKI_demographicInfo.csv')
 kki_handedness = read.csv('data/KKI_handedness.csv')
@@ -33,6 +34,8 @@ full_dat = full_join(full_dat, kki_WISC)
 full_dat = full_join(full_dat, kki_handedness)
 full_dat = full_dat %>% drop_na(c('SecondaryDiagnosis', 'CurrentlyNotTakingMeds', 'CurrentlyTakingAtomoxetine', 'CurrentlyTakingClonidine', 'mABC_TotalStandardScore', 'EdinburghHandedness_Integer'))
 full_dat = subset(full_dat, !(is.na(SRS_VERSION) & is.na(WISC_VERSION)))
+WISC4_full_dat = subset(full_dat, WISC_VERSION == 4)
+WISC5_full_dat = subset(full_dat, WISC_VERSION == 5)
 ```
 
 
@@ -107,4 +110,12 @@ ggplot(full_dat, aes(x= WISC4_PictureConcepts, y=mABC_TotalStandardScore)) +
   geom_jitter() +
   facet_grid(. ~ PrimaryDiagnosis) + 
   ggtitle('WISC4_PictureConcepts vs. mABC Total Standard Score')
+```
+
+```{r}
+scatterplotMatrix(WISC4_full_dat[c('WISC4_Vocabulary', 'WISC4_Information', 'WISC4_Similarities', 'WISC4_BlockDesign', 'WISC4_PictureConcepts', 'WISC4_MatrixReasoning')])
+```
+
+```{r}
+scatterplotMatrix(WISC5_full_dat[c('WISC5_Vocabulary', 'WISC5_Similarities', 'WISC5_BlockDesign', 'WISC5_MatrixReasoning', 'WISC5_FigureWeights')])
 ```

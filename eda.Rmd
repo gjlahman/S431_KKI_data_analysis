@@ -16,11 +16,20 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-
 ```{r message=FALSE, warning=FALSE}
 library(dplyr)
 library(tidyr)
 library(alr4)
+library(ggplot2)
+```
+
+## Research Question
+
+Is there a statistically significant difference in predictive power of the motor skills vs. social responsivness model when we include intelligence metrics as predictors?
+
+## Filtering Data
+
+```{r message=FALSE, warning=FALSE}
 
 kki_demographics = read.csv('data/KKI_demographicInfo.csv')
 kki_handedness = read.csv('data/KKI_handedness.csv')
@@ -34,111 +43,178 @@ full_dat = full_join(full_dat, kki_SRS)
 full_dat = full_join(full_dat, kki_WISC)
 full_dat = full_join(full_dat, kki_handedness)
 full_dat = full_dat %>% drop_na(c('SecondaryDiagnosis', 'CurrentlyNotTakingMeds', 'CurrentlyTakingAtomoxetine', 'CurrentlyTakingClonidine', 'mABC_TotalStandardScore', 'EdinburghHandedness_Integer'))
-full_dat = subset(full_dat, !(is.na(SRS_VERSION) & is.na(WISC_VERSION)))
+full_dat = subset(full_dat, visit == 1)
+full_dat = subset(full_dat, !is.na(WISC_VERSION) & !is.na(SRS_VERSION))
+full_dat = subset(full_dat, ADHD_Subtype %in% c('Combined', 'Hyperactive/Impulsive', 'Inattentive', 'No dx'))
 WISC4_full_dat = subset(full_dat, WISC_VERSION == 4)
 WISC5_full_dat = subset(full_dat, WISC_VERSION == 5)
 ```
 
+## Summarizing Data
+```{r message=FALSE, warning=FALSE}
+table(factor(full_dat$PrimaryDiagnosis), factor(full_dat$ADHD_Subtype))
+table(factor(full_dat$WISC_VERSION))
+table(factor(WISC4_full_dat$PrimaryDiagnosis), factor(WISC4_full_dat$ADHD_Subtype))
+```
 
-## Research Question
+## Main Variables of Interest
 
-Is there a statistically significant difference in predictive power of the motor skills vs. social responsivness model when we include intelligence metrics as predictors?
-
-
-
-
-
+### mABC_AGE
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
-library(ggplot2)
-ggplot(full_dat, aes(x=PrimaryDiagnosis, y=mABC_TotalStandardScore, color=PrimaryDiagnosis)) + 
+ggplot(WISC4_full_dat, aes(x=PrimaryDiagnosis, y=mABC_AGE, color=PrimaryDiagnosis)) + 
   geom_boxplot()
 ```
 
+### mABC_TotalStandardScore
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
-ggplot(full_dat, aes(x=mABC_AGE, y=mABC_TotalStandardScore)) + 
+ggplot(WISC4_full_dat, aes(x=PrimaryDiagnosis, y=mABC_TotalStandardScore, color=PrimaryDiagnosis)) + 
+  geom_boxplot()
+```
+
+### SRS_TotalRawScore
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(WISC4_full_dat, aes(x=PrimaryDiagnosis, y=SRS_TotalRawScore, color=PrimaryDiagnosis)) + 
+  geom_boxplot()
+```
+
+### WISC4_Vocabulary
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(WISC4_full_dat, aes(x=PrimaryDiagnosis, y=WISC4_Vocabulary, color=PrimaryDiagnosis)) + 
+  geom_boxplot()
+```
+
+### WISC4_Information
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(WISC4_full_dat, aes(x=PrimaryDiagnosis, y=WISC4_Information, color=PrimaryDiagnosis)) + 
+  geom_boxplot()
+```
+
+### WISC4_Similarities
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(WISC4_full_dat, aes(x=PrimaryDiagnosis, y=WISC4_Similarities, color=PrimaryDiagnosis)) + 
+  geom_boxplot()
+```
+
+### WISC4_BlockDesign
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(WISC4_full_dat, aes(x=PrimaryDiagnosis, y=WISC4_BlockDesign, color=PrimaryDiagnosis)) + 
+  geom_boxplot()
+```
+
+### WISC4_PictureConcepts
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(WISC4_full_dat, aes(x=PrimaryDiagnosis, y=WISC4_PictureConcepts, color=PrimaryDiagnosis)) + 
+  geom_boxplot()
+```
+
+### WISC4_MatrixReasoning
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(WISC4_full_dat, aes(x=PrimaryDiagnosis, y=WISC4_MatrixReasoning, color=PrimaryDiagnosis)) + 
+  geom_boxplot()
+```
+
+## Plots
+
+### mABC_AGE vs mABC_TotalStandardScore
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(WISC4_full_dat, aes(x=mABC_AGE, y=mABC_TotalStandardScore)) + 
   geom_jitter() + 
   ggtitle('Age vs. mABC Total Standard Score')
 ```
 
+### SRS_TotalRawScore vs mABC_TotalStandardScore
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
-ggplot(full_dat, aes(x= WISC4_Vocabulary, y=mABC_TotalStandardScore)) + 
+ggplot(full_dat, aes(x=SRS_TotalRawScore, y=mABC_TotalStandardScore)) + 
+  geom_jitter() + 
+  ggtitle('SRS_TotalRawScore vs. mABC Total Standard Score')
+```
+
+### WISC4_Vocabulary vs mABC_TotalStandardScore
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(WISC4_full_dat, aes(x= WISC4_Vocabulary, y=mABC_TotalStandardScore)) + 
   geom_jitter() +
   facet_grid(. ~ PrimaryDiagnosis) + 
   ggtitle('WISC4_Vocabulary vs. mABC Total Standard Score')
 ```
 
+### WISC5_Vocabulary vs mABC_TotalStandardScore
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
-ggplot(full_dat, aes(x= WISC5_Vocabulary, y=mABC_TotalStandardScore)) + 
+ggplot(WISC5_full_dat, aes(x= WISC5_Vocabulary, y=mABC_TotalStandardScore)) + 
   geom_jitter() +
   facet_grid(. ~ PrimaryDiagnosis) + 
   ggtitle('WISC5_Vocabulary vs. mABC Total Standard Score')
 ```
 
+### WISC4_Information vs mABC_TotalStandardScore
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
-ggplot(full_dat, aes(x= WISC4_Information, y=mABC_TotalStandardScore)) + 
+ggplot(WISC4_full_dat, aes(x= WISC4_Information, y=mABC_TotalStandardScore)) + 
   geom_jitter() +
   facet_grid(. ~ PrimaryDiagnosis) + 
   ggtitle('WISC4_Information vs. mABC Total Standard Score')
 ```
 
+### WISC4_Similarities vs mABC_TotalStandardScore
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
-ggplot(full_dat, aes(x= WISC4_Similarities, y=mABC_TotalStandardScore)) + 
+ggplot(WISC4_full_dat, aes(x= WISC4_Similarities, y=mABC_TotalStandardScore)) + 
   geom_jitter() +
   facet_grid(. ~ PrimaryDiagnosis) + 
   ggtitle('WISC4_Similarities vs. mABC Total Standard Score')
 ```
 
-
+### WISC5_Similarities vs mABC_TotalStandardScore
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
-ggplot(full_dat, aes(x= WISC5_Similarities, y=mABC_TotalStandardScore)) + 
+ggplot(WISC5_full_dat, aes(x= WISC5_Similarities, y=mABC_TotalStandardScore)) + 
   geom_jitter() +
   facet_grid(. ~ PrimaryDiagnosis) + 
   ggtitle('WISC5_Similarities vs. mABC Total Standard Score')
 ```
 
-
+### WISC4_BlockDesign vs mABC_TotalStandardScore
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
-ggplot(full_dat, aes(x= WISC4_BlockDesign, y=mABC_TotalStandardScore)) + 
+ggplot(WISC4_full_dat, aes(x= WISC4_BlockDesign, y=mABC_TotalStandardScore)) + 
   geom_jitter() +
   facet_grid(. ~ PrimaryDiagnosis) + 
   ggtitle('WISC4_Design vs. mABC Total Standard Score')
 ```
 
-
-
+### WISC4_PictureConcepts vs mABC_TotalStandardScore
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
-ggplot(full_dat, aes(x= WISC4_PictureConcepts, y=mABC_TotalStandardScore)) + 
+ggplot(WISC4_full_dat, aes(x= WISC4_PictureConcepts, y=mABC_TotalStandardScore)) +
   geom_jitter() +
   facet_grid(. ~ PrimaryDiagnosis) + 
   ggtitle('WISC4_PictureConcepts vs. mABC Total Standard Score')
 ```
 
-```{r}
+### WISC4_MatrixReasoning vs mABC_TotalStandardScore
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(WISC4_full_dat, aes(x= WISC4_MatrixReasoning, y=mABC_TotalStandardScore)) +
+  geom_jitter() +
+  facet_grid(. ~ PrimaryDiagnosis) + 
+  ggtitle('WISC4_MatrixReasoning vs. mABC Total Standard Score')
+```
+
+### Scatterplot Matrix for WISC_4
+```{r message=FALSE, warning=FALSE, fig.align='center'}
 scatterplotMatrix(WISC4_full_dat[c('WISC4_Vocabulary', 'WISC4_Information', 'WISC4_Similarities', 'WISC4_BlockDesign', 'WISC4_PictureConcepts', 'WISC4_MatrixReasoning')], cex = 0.2)
 ```
 
-```{r}
+### Scatterplot Matrix for WISC_5
+```{r message=FALSE, warning=FALSE, fig.align='center'}
 scatterplotMatrix(WISC5_full_dat[c('WISC5_Vocabulary', 'WISC5_Similarities', 'WISC5_BlockDesign', 'WISC5_MatrixReasoning', 'WISC5_FigureWeights')], cex = 0.5)
 ```
 
+### log(WISC4_Information) vs. mABC Total Standard Score
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
-ggplot(full_dat, aes(x= log(WISC4_Vocabulary), y=mABC_TotalStandardScore)) + 
-  geom_jitter() +
-  facet_grid(. ~ PrimaryDiagnosis) + 
-  ggtitle('log(WISC4_Vocabulary) vs. mABC Total Standard Score')
-```
-
-```{r message=FALSE, warning=FALSE, fig.align='center'}
-ggplot(full_dat, aes(x= log(WISC4_Information), y=mABC_TotalStandardScore)) + 
-  geom_jitter() +
+ggplot(WISC4_full_dat, aes(x= log(WISC4_Information), y=mABC_TotalStandardScore)) + geom_jitter() +
   facet_grid(. ~ PrimaryDiagnosis) + 
   ggtitle('log(WISC4_Information) vs. mABC Total Standard Score')
 ```
 
-```{r}
-ggplot(full_dat, aes(x= WISC4_Vocabulary + WISC4_Information + WISC4_Similarities + WISC4_BlockDesign + WISC4_PictureConcepts + WISC4_MatrixReasoning, y=mABC_TotalStandardScore)) + 
+### WISC4_Total vs mABC_TotalStandardScore
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(WISC4_full_dat, aes(x= WISC4_Vocabulary + WISC4_Information + WISC4_Similarities + WISC4_BlockDesign + WISC4_PictureConcepts + WISC4_MatrixReasoning, y=mABC_TotalStandardScore)) + 
   geom_jitter() +
   facet_grid(. ~ PrimaryDiagnosis) + 
-  ggtitle('WISC4_Design vs. mABC Total Standard Score')
+  ggtitle('Sum of WISC4_Vars vs. mABC Total Standard Score')
 ```
 

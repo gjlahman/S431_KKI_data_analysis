@@ -1,12 +1,14 @@
 ---
 title: "Exploratory Data Analysis"
-author: 
-  - "Gabriel Lahman"
-  - "Rowan Lavelle"
-  - "Jordan Majoros"
-  - "Matthew Zelenin"
+author:
+- Gabriel Lahman
+- Rowan Lavelle
+- Jordan Majoros
+- Matthew Zelenin
 date: "11/11/2019"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -38,20 +40,71 @@ full_dat = subset(full_dat, !(is.na(SRS_VERSION) & is.na(WISC_VERSION)))
 
 Is there a statistically significant difference in predictive power of the motor skills vs. social responsivness model when we include intelligence metrics as predictors?
 
+
+
+
+
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
 library(ggplot2)
+ggplot(full_dat, aes(x=PrimaryDiagnosis, y=mABC_TotalStandardScore, color=PrimaryDiagnosis)) + 
+  geom_boxplot()
 ```
 
-```{r}
-ggplot(full_dat, aes(x=PrimaryDiagnosis, y=mABC_TotalStandardScore, color=PrimaryDiagnosis)) + geom_boxplot()
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(full_dat, aes(x=mABC_AGE, y=mABC_TotalStandardScore)) + 
+  geom_jitter() + 
+  ggtitle('Age vs. mABC Total Standard Score')
 ```
 
-```{r}
-ggplot(full_dat, aes(x=mABC_AGE, y=mABC_TotalStandardScore)) + geom_point() + geom_smooth() + geom_smooth(method = 'lm', lty = 2, col = 'red')
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(full_dat, aes(x= WISC4_Vocabulary, y=mABC_TotalStandardScore)) + 
+  geom_jitter() +
+  facet_grid(. ~ PrimaryDiagnosis) + 
+  ggtitle('WISC4_Vocabulary vs. mABC Total Standard Score')
 ```
 
-```{r}
-ggplot(subset(full_dat, PrimaryDiagnosis == 'None'), aes(x=mABC_AGE, y=mABC_TotalStandardScore)) + geom_point() + geom_smooth() + geom_smooth(method = 'lm', lty = 2, col = 'red')
-ggplot(subset(full_dat, PrimaryDiagnosis == 'ADHD'), aes(x=mABC_AGE, y=mABC_TotalStandardScore)) + geom_point() + geom_smooth() + geom_smooth(method = 'lm', lty = 2, col = 'red')
-ggplot(subset(full_dat, PrimaryDiagnosis == 'Autism'), aes(x=mABC_AGE, y=mABC_TotalStandardScore)) + geom_point() + geom_smooth() + geom_smooth(method = 'lm', lty = 2, col = 'red')
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(full_dat, aes(x= WISC5_Vocabulary, y=mABC_TotalStandardScore)) + 
+  geom_jitter() +
+  facet_grid(. ~ PrimaryDiagnosis) + 
+  ggtitle('WISC5_Vocabulary vs. mABC Total Standard Score')
+```
+
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(full_dat, aes(x= WISC4_Information, y=mABC_TotalStandardScore)) + 
+  geom_jitter() +
+  facet_grid(. ~ PrimaryDiagnosis) + 
+  ggtitle('WISC4_Information vs. mABC Total Standard Score')
+```
+
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(full_dat, aes(x= WISC4_Similarities, y=mABC_TotalStandardScore)) + 
+  geom_jitter() +
+  facet_grid(. ~ PrimaryDiagnosis) + 
+  ggtitle('WISC4_Similarities vs. mABC Total Standard Score')
+```
+
+
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(full_dat, aes(x= WISC5_Similarities, y=mABC_TotalStandardScore)) + 
+  geom_jitter() +
+  facet_grid(. ~ PrimaryDiagnosis) + 
+  ggtitle('WISC5_Similarities vs. mABC Total Standard Score')
+```
+
+
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(full_dat, aes(x= WISC4_BlockDesign, y=mABC_TotalStandardScore)) + 
+  geom_jitter() +
+  facet_grid(. ~ PrimaryDiagnosis) + 
+  ggtitle('WISC4_Design vs. mABC Total Standard Score')
+```
+
+
+
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(full_dat, aes(x= WISC4_PictureConcepts, y=mABC_TotalStandardScore)) + 
+  geom_jitter() +
+  facet_grid(. ~ PrimaryDiagnosis) + 
+  ggtitle('WISC4_PictureConcepts vs. mABC Total Standard Score')
 ```

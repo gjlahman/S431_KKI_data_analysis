@@ -7,6 +7,7 @@ author:
 - Matthew Zelenin
 date: "11/11/2019"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 ---
@@ -113,9 +114,31 @@ ggplot(full_dat, aes(x= WISC4_PictureConcepts, y=mABC_TotalStandardScore)) +
 ```
 
 ```{r}
-scatterplotMatrix(WISC4_full_dat[c('WISC4_Vocabulary', 'WISC4_Information', 'WISC4_Similarities', 'WISC4_BlockDesign', 'WISC4_PictureConcepts', 'WISC4_MatrixReasoning')])
+scatterplotMatrix(WISC4_full_dat[c('WISC4_Vocabulary', 'WISC4_Information', 'WISC4_Similarities', 'WISC4_BlockDesign', 'WISC4_PictureConcepts', 'WISC4_MatrixReasoning')], cex = 0.2)
 ```
 
 ```{r}
-scatterplotMatrix(WISC5_full_dat[c('WISC5_Vocabulary', 'WISC5_Similarities', 'WISC5_BlockDesign', 'WISC5_MatrixReasoning', 'WISC5_FigureWeights')])
+scatterplotMatrix(WISC5_full_dat[c('WISC5_Vocabulary', 'WISC5_Similarities', 'WISC5_BlockDesign', 'WISC5_MatrixReasoning', 'WISC5_FigureWeights')], cex = 0.5)
 ```
+
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(full_dat, aes(x= log(WISC4_Vocabulary), y=mABC_TotalStandardScore)) + 
+  geom_jitter() +
+  facet_grid(. ~ PrimaryDiagnosis) + 
+  ggtitle('log(WISC4_Vocabulary) vs. mABC Total Standard Score')
+```
+
+```{r message=FALSE, warning=FALSE, fig.align='center'}
+ggplot(full_dat, aes(x= log(WISC4_Information), y=mABC_TotalStandardScore)) + 
+  geom_jitter() +
+  facet_grid(. ~ PrimaryDiagnosis) + 
+  ggtitle('log(WISC4_Information) vs. mABC Total Standard Score')
+```
+
+```{r}
+ggplot(full_dat, aes(x= WISC4_Vocabulary + WISC4_Information + WISC4_Similarities + WISC4_BlockDesign + WISC4_PictureConcepts + WISC4_MatrixReasoning, y=mABC_TotalStandardScore)) + 
+  geom_jitter() +
+  facet_grid(. ~ PrimaryDiagnosis) + 
+  ggtitle('WISC4_Design vs. mABC Total Standard Score')
+```
+

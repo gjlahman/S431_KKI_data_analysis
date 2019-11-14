@@ -1,0 +1,7 @@
+2 slides for introduction (1 for general explanation, 1 for research question)
+1 slide for filtering data
+1 slide for summarizing data
+1-2 slides for boxplots
+2 slides for plots (plotting intelligence metrics vs other variables)
+1-2 slides for scatterplot matrices
+1 slide for conclusion

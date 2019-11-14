@@ -1,0 +1,1542 @@
+This is LuaTeX, Version 1.10.0 (TeX Live 2019)  (format=lualatex 2019.11.13)  14 NOV 2019 10:23
+ restricted system commands enabled.
+**eda.tex
+(./eda.tex
+LaTeX2e <2018-12-01>
+Lua module: luaotfload-main 2019-09-13 3.00 luaotfload entry point
+Lua module: luaotfload-init 2019-09-13 3.00 luaotfload submodule / initializatio
+n
+Lua module: lualibs 2019-08-11 2.67 ConTeXt Lua standard libraries.
+Lua module: lualibs-extended 2019-08-11 2.67 ConTeXt Lua libraries -- extended c
+ollection.
+Lua module: luaotfload-log 2019-09-13 3.00 luaotfload submodule / logging
+Lua module: luaotfload-parsers 2019-09-13 3.00 luaotfload submodule / filelist
+Lua module: luaotfload-configuration 2019-09-13 3.00 luaotfload submodule / conf
+ig file reader
+luaotfload | conf : Root cache directory is /Users/gjlahman/Library/TinyTeX/texm
+f-var/luatex-cache/generic/names.
+luaotfload | init : Loading fontloader “fontloader-2019-08-11.lua” from kpse
+-resolved path “/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/luatex/luaotflo
+ad/fontloader-2019-08-11.lua”.
+Lua-only attribute luaotfload@state = 2
+Lua-only attribute luaotfload@noligature = 3
+Lua-only attribute luaotfload@syllabe = 4
+luaotfload | init : Context OpenType loader version “3.109”
+Inserting `luaotfload.node_processor' at position 1 in `pre_linebreak_filter'.
+Inserting `luaotfload.node_processor' at position 1 in `hpack_filter'.
+Lua module: luaotfload-loaders 2019-09-13 3.00 luaotfload submodule / callback h
+andling
+Inserting `luaotfload.define_font' at position 1 in `define_font'.
+Lua module: luaotfload-database 2019-09-13 3.00 luaotfload submodule / database
+Lua module: luaotfload-unicode 2019-09-13 3.00 luaotfload submodule / Unicode he
+lpers
+Lua module: luaotfload-colors 2019-09-13 3.00 luaotfload submodule / color
+Lua-only attribute luaotfload_color_attribute = 5
+Lua module: luaotfload-resolvers 2019-09-13 3.00 luaotfload submodule / resolver
+s
+luaotfload | conf : Root cache directory is /Users/gjlahman/Library/TinyTeX/texm
+f-var/luatex-cache/generic/names.
+Lua module: luaotfload-features 2019-09-13 3.00 luaotfload submodule / features
+Lua module: luaotfload-letterspace 2019-09-13 3.00 luaotfload submodule / color
+Lua module: luaotfload-embolden 2019-09-13 3.00 luaotfload submodule / color
+Lua module: luaotfload-notdef 2019-09-13 3.00 luaotfload submodule / color
+Lua module: luaotfload-auxiliary 2019-09-13 3.00 luaotfload submodule / auxiliar
+y functions
+Inserting `luaotfload.aux.set_sscale_dimens' at position 1 in `luaotfload.patch_
+font'.
+Inserting `luaotfload.aux.patch_cambria_domh' at position 2 in `luaotfload.patch
+_font'.
+Inserting `luaotfload.aux.fixup_fontdata' at position 1 in `luaotfload.patch_fon
+t_unsafe'.
+Inserting `luaotfload.aux.set_capheight' at position 3 in `luaotfload.patch_font
+'.
+Inserting `luaotfload.aux.set_xheight' at position 4 in `luaotfload.patch_font'.
+Lua module: luaotfload-multiscript 2019-09-13 3.00 luaotfload submodule / multis
+cript
+Inserting `luaotfload.rewrite_fontname' at position 5 in `luaotfload.patch_font'
+.
+luaotfload | main : initialization completed in 0.154 seconds
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamer.cls
+Document Class: beamer 2019/09/29 v3.57 A class for typesetting presentations
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasemodes.st
+y (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count80
+)
+\beamer@tempbox=\box27
+\beamer@tempcount=\count81
+\c@beamerpauses=\count82
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasedecode.s
+ty
+\beamer@slideinframe=\count83
+\beamer@minimum=\count84
+\beamer@decode@box=\box28
+)
+\beamer@commentbox=\box29
+\beamer@modecount=\count85
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
+)
+\headdp=\dimen102
+\footheight=\dimen103
+\sidebarheight=\dimen104
+\beamer@tempdim=\dimen105
+\beamer@finalheight=\dimen106
+\beamer@animht=\dimen107
+\beamer@animdp=\dimen108
+\beamer@animwd=\dimen109
+\beamer@leftmargin=\dimen110
+\beamer@rightmargin=\dimen111
+\beamer@leftsidebar=\dimen112
+\beamer@rightsidebar=\dimen113
+\beamer@boxsize=\dimen114
+\beamer@vboxoffset=\dimen115
+\beamer@descdefault=\dimen116
+\beamer@descriptionwidth=\dimen117
+\beamer@lastskip=\skip41
+\beamer@areabox=\box30
+\beamer@animcurrent=\box31
+\beamer@animshowbox=\box32
+\beamer@sectionbox=\box33
+\beamer@logobox=\box34
+\beamer@linebox=\box35
+\beamer@sectioncount=\count86
+\beamer@subsubsectionmax=\count87
+\beamer@subsectionmax=\count88
+\beamer@sectionmax=\count89
+\beamer@totalheads=\count90
+\beamer@headcounter=\count91
+\beamer@partstartpage=\count92
+\beamer@sectionstartpage=\count93
+\beamer@subsectionstartpage=\count94
+\beamer@animationtempa=\count95
+\beamer@animationtempb=\count96
+\beamer@xpos=\count97
+\beamer@ypos=\count98
+\beamer@ypos@offset=\count99
+\beamer@showpartnumber=\count100
+\beamer@currentsubsection=\count101
+\beamer@coveringdepth=\count102
+\beamer@sectionadjust=\count103
+\beamer@tocsectionnumber=\count104
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseoptions.
+sty (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks14
+))
+\beamer@paperwidth=\skip42
+\beamer@paperheight=\skip43
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2018/04/16 v5.8 Page Geometry
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
+Package ifvtex Info: VTeX not detected.
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
+)
+\Gm@cnth=\count105
+\Gm@cntv=\count106
+\c@Gm@tempcnt=\count107
+\Gm@bindingoffset=\dimen118
+\Gm@wd@mp=\dimen119
+\Gm@odd@mp=\dimen120
+\Gm@even@mp=\dimen121
+\Gm@layoutwidth=\dimen122
+\Gm@layoutheight=\dimen123
+\Gm@layouthoffset=\dimen124
+\Gm@layoutvoffset=\dimen125
+\Gm@dimlist=\toks15
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/base/size12.clo
+File: size12.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
+luaotfload | db : Font names database loaded from /Users/gjlahman/Library/TinyTe
+X/texmf-var/luatex-cache/generic/names/luaotfload-names.luc)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgfcore.st
+y (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphicx.sty
+Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/graphics/trig.sty
+Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
+)
+Package graphics Info: Driver file: luatex.def on input line 99.
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/graphics-def/luatex.def
+File: luatex.def 2018/01/08 v1.0l Graphics/color driver for luatex
+))
+\Gin@req@height=\dimen126
+\Gin@req@width=\dimen127
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/pgf/systemlayer/pgfsys.st
+y (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfrcs.st
+y
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-c
+ommon.tex
+\pgfutil@everybye=\toks16
+\pgfutil@tempdima=\dimen128
+\pgfutil@tempdimb=\dimen129
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-c
+ommon-lists.tex))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfutil-l
+atex.def
+\pgfutil@abb=\box36
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/ms/everyshi.sty
+Package: everyshi 2001/05/15 v3.00 EveryShipout Package (MS)
+))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfrcs.co
+de.tex (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/pgf.revision
+.tex)
+Package: pgfrcs 2019/08/03 v3.1.4b (3.1.4b)
+))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys.
+code.tex
+Package: pgfsys 2019/08/03 v3.1.4b (3.1.4b)
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.c
+ode.tex
+\pgfkeys@pathtoks=\toks17
+\pgfkeys@temptoks=\toks18
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeysfi
+ltered.code.tex
+\pgfkeys@tmptoks=\toks19
+))
+\pgf@x=\dimen130
+\pgf@y=\dimen131
+\pgf@xa=\dimen132
+\pgf@ya=\dimen133
+\pgf@xb=\dimen134
+\pgf@yb=\dimen135
+\pgf@xc=\dimen136
+\pgf@yc=\dimen137
+\pgf@xd=\dimen138
+\pgf@yd=\dimen139
+\w@pgf@writea=\write3
+\r@pgf@reada=\read1
+\c@pgf@counta=\count108
+\c@pgf@countb=\count109
+\c@pgf@countc=\count110
+\c@pgf@countd=\count111
+\t@pgf@toka=\toks20
+\t@pgf@tokb=\toks21
+\t@pgf@tokc=\toks22
+\pgf@sys@id@count=\count112
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
+File: pgf.cfg 2019/08/03 v3.1.4b (3.1.4b)
+)
+Driver file for pgf: pgfsys-luatex.def
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-
+luatex.def
+File: pgfsys-luatex.def 2019/08/03 v3.1.4b (3.1.4b)
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-
+common-pdf.def
+File: pgfsys-common-pdf.def 2019/08/03 v3.1.4b (3.1.4b)
+)))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsyss
+oftpath.code.tex
+File: pgfsyssoftpath.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfsyssoftpath@smallbuffer@items=\count113
+\pgfsyssoftpath@bigbuffer@items=\count114
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/systemlayer/pgfsysp
+rotocol.code.tex
+File: pgfsysprotocol.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/xcolor/xcolor.sty
+Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package xcolor Info: Driver file: luatex.def on input line 225.
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
+Package xcolor Info: Model `hsb' substituted by `rgb' on input line 1352.
+Package xcolor Info: Model `RGB' extended on input line 1364.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1366.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1367.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1368.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.
+code.tex
+Package: pgfcore 2019/08/03 v3.1.4b (3.1.4b)
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.t
+ex
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathcalc.co
+de.tex
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathutil.co
+de.tex)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathparser.
+code.tex
+\pgfmath@dimen=\dimen140
+\pgfmath@count=\count115
+\pgfmath@box=\box37
+\pgfmath@toks=\toks23
+\pgfmath@stack@operand=\toks24
+\pgfmath@stack@operation=\toks25
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.code.tex
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.basic.code.tex)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.trigonometric.code.tex)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.random.code.tex)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.comparison.code.tex)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.base.code.tex)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.round.code.tex)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.misc.code.tex)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfunctio
+ns.integerarithmetics.code.tex)))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmathfloat.c
+ode.tex
+\c@pgfmathroundto@lastzeros=\count116
+))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfint.code.te
+x)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorep
+oints.code.tex
+File: pgfcorepoints.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@picminx=\dimen141
+\pgf@picmaxx=\dimen142
+\pgf@picminy=\dimen143
+\pgf@picmaxy=\dimen144
+\pgf@pathminx=\dimen145
+\pgf@pathmaxx=\dimen146
+\pgf@pathminy=\dimen147
+\pgf@pathmaxy=\dimen148
+\pgf@xx=\dimen149
+\pgf@xy=\dimen150
+\pgf@yx=\dimen151
+\pgf@yy=\dimen152
+\pgf@zx=\dimen153
+\pgf@zy=\dimen154
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorep
+athconstruct.code.tex
+File: pgfcorepathconstruct.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@path@lastx=\dimen155
+\pgf@path@lasty=\dimen156
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorep
+athusage.code.tex
+File: pgfcorepathusage.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@shorten@end@additional=\dimen157
+\pgf@shorten@start@additional=\dimen158
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcores
+copes.code.tex
+File: pgfcorescopes.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfpic=\box38
+\pgf@hbox=\box39
+\pgf@layerbox@main=\box40
+\pgf@picture@serial@count=\count117
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreg
+raphicstate.code.tex
+File: pgfcoregraphicstate.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgflinewidth=\dimen159
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoret
+ransformations.code.tex
+File: pgfcoretransformations.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@pt@x=\dimen160
+\pgf@pt@y=\dimen161
+\pgf@pt@temp=\dimen162
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreq
+uick.code.tex
+File: pgfcorequick.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreo
+bjects.code.tex
+File: pgfcoreobjects.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorep
+athprocessing.code.tex
+File: pgfcorepathprocessing.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorea
+rrows.code.tex
+File: pgfcorearrows.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfarrowsep=\dimen163
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcores
+hade.code.tex
+File: pgfcoreshade.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@max=\dimen164
+\pgf@sys@shading@range@num=\count118
+\pgf@shadingcount=\count119
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorei
+mage.code.tex
+File: pgfcoreimage.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoree
+xternal.code.tex
+File: pgfcoreexternal.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfexternal@startupbox=\box41
+))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorel
+ayers.code.tex
+File: pgfcorelayers.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcoret
+ransparency.code.tex
+File: pgfcoretransparency.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorep
+atterns.code.tex
+File: pgfcorepatterns.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/basiclayer/pgfcorer
+df.code.tex
+File: pgfcorerdf.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/pgf/utilities/xxcolor.sty
+Package: xxcolor 2003/10/24 ver 0.1
+\XC@nummixins=\count120
+\XC@countmixins=\count121
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/oberdiek/atbegshi.sty
+Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
+)) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2019/09/12 v6.88i Hypertext links for LaTeX
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/oberdiek/hobsub-hyperre
+f.sty
+Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/oberdiek/hobsub-generic
+.sty
+Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
+Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
+Package hobsub Info: Skipping package `infwarerr' (already loaded).
+Package hobsub Info: Skipping package `ltxcmds' (already loaded).
+Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
+Package ifluatex Info: LuaTeX detected.
+Package hobsub Info: Skipping package `ifvtex' (already loaded).
+Package: intcalc 2016/05/16 v1.2 Expandable calculations with integers (HO)
+Package hobsub Info: Skipping package `ifpdf' (already loaded).
+Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
+Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
+Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
+Package: luatex-loader 2019/07/25 v0.7 Lua module loader (HO)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/scripts/oberdiek/oberdiek.luatex.lua
+)
+Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO)
+
+Package pdftexcmds Info: \pdf@primitive is available.
+Package pdftexcmds Info: \pdf@ifprimitive is available.
+Package pdftexcmds Info: \pdfdraftmode found.
+\pdftexcmds@toks=\toks26
+Package: pdfescape 2016/05/16 v1.14 Implements pdfTeX's escape features (HO)
+Package: bigintcalc 2016/05/16 v1.4 Expandable calculations on big integers (HO)
+
+Package: bitset 2016/05/16 v1.2 Handle bit-vector datatype (HO)
+Package: uniquecounter 2016/05/16 v1.3 Provide unlimited unique counter (HO)
+)
+Package hobsub Info: Skipping package `hobsub' (already loaded).
+Package: letltxmacro 2016/05/16 v1.5 Let assignment for LaTeX macros (HO)
+Package: hopatch 2016/05/16 v1.3 Wrapper for package hooks (HO)
+Package: xcolor-patch 2016/05/16 xcolor patch
+Package: atveryend 2016/05/16 v1.9 Hooks at the very end of document (HO)
+Package hobsub Info: Skipping package `atbegshi' (already loaded).
+Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
+Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/oberdiek/auxhook.sty
+Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
+)
+\@linkdim=\dimen165
+\Hy@linkcounter=\count122
+\Hy@pagecounter=\count123
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2019/09/12 v6.88i Hyperref: PDFDocEncoding definition (HO)
+)
+\Hy@SavedSpaceFactor=\count124
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
+)
+Package hyperref Info: Option `bookmarks' set `true' on input line 4424.
+Package hyperref Info: Option `bookmarksopen' set `true' on input line 4424.
+Package hyperref Info: Option `implicit' set `false' on input line 4424.
+Package hyperref Info: Hyper figures OFF on input line 4550.
+Package hyperref Info: Link nesting OFF on input line 4555.
+Package hyperref Info: Hyper index ON on input line 4558.
+Package hyperref Info: Plain pages OFF on input line 4565.
+Package hyperref Info: Backreferencing OFF on input line 4570.
+Package hyperref Info: Implicit mode OFF; no redefinition of LaTeX internals.
+Package hyperref Info: Bookmarks ON on input line 4803.
+\c@Hy@tempcnt=\count125
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/url/url.sty
+\Urlmuskip=\muskip10
+Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
+)
+LaTeX Info: Redefining \url on input line 5156.
+\XeTeXLinkMargin=\dimen166
+\Fld@menulength=\count126
+\Field@Width=\dimen167
+\Fld@charsize=\dimen168
+Package hyperref Info: Hyper figures OFF on input line 6411.
+Package hyperref Info: Link nesting OFF on input line 6416.
+Package hyperref Info: Hyper index ON on input line 6419.
+Package hyperref Info: backreferencing OFF on input line 6426.
+Package hyperref Info: Link coloring OFF on input line 6431.
+Package hyperref Info: Link coloring with OCG OFF on input line 6436.
+Package hyperref Info: PDF/A mode OFF on input line 6441.
+LaTeX Info: Redefining \ref on input line 6481.
+LaTeX Info: Redefining \pageref on input line 6485.
+\Hy@abspage=\count127
+
+Package hyperref Message: Stopped early.
+
+)
+Package hyperref Info: Driver (autodetected): hluatex.
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/hyperref/hluatex.def
+File: hluatex.def 2019/09/12 v6.88i Hyperref driver for luaTeX
+\Fld@listcount=\count128
+\c@bookmark@seq@number=\count129
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/oberdiek/rerunfilecheck.s
+ty
+Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 28
+2.
+))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbaserequires
+.sty
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasecompatib
+ility.sty)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasefont.sty
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
+\@emptytoks=\toks27
+\symAMSa=\mathgroup4
+\symAMSb=\mathgroup5
+LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
+(Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
+)))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasetranslat
+or.sty
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/translator/translator.sty
+Package: translator 2019-05-31 v1.12a Easy translation of strings in LaTeX
+))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasemisc.sty
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasetwoscree
+ns.sty)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseoverlay.
+sty
+\beamer@argscount=\count130
+\beamer@lastskipcover=\skip44
+\beamer@trivlistdepth=\count131
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasetitle.st
+y)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasesection.
+sty
+\c@lecture=\count132
+\c@part=\count133
+\c@section=\count134
+\c@subsection=\count135
+\c@subsubsection=\count136
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseframe.st
+y
+\beamer@framebox=\box42
+\beamer@frametitlebox=\box43
+\beamer@zoombox=\box44
+\beamer@zoomcount=\count137
+\beamer@zoomframecount=\count138
+\beamer@frametextheight=\dimen169
+\c@subsectionslide=\count139
+\beamer@frametopskip=\skip45
+\beamer@framebottomskip=\skip46
+\beamer@frametopskipautobreak=\skip47
+\beamer@framebottomskipautobreak=\skip48
+\beamer@envbody=\toks28
+\framewidth=\dimen170
+\c@framenumber=\count140
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseverbatim
+.sty
+\beamer@verbatimfileout=\write4
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseframesiz
+e.sty
+\beamer@splitbox=\box45
+\beamer@autobreakcount=\count141
+\beamer@autobreaklastheight=\dimen171
+\beamer@frametitletoks=\toks29
+\beamer@framesubtitletoks=\toks30
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseframecom
+ponents.sty
+\beamer@footins=\box46
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasecolor.st
+y)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasenotes.st
+y
+\beamer@frameboxcopy=\box47
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasetoc.st
+y)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasetemplate
+s.sty
+\beamer@sbttoks=\toks31
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseauxtempl
+ates.sty
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbaseboxes.st
+y
+\bmb@box=\box48
+\bmb@colorbox=\box49
+\bmb@boxshadow=\box50
+\bmb@boxshadowball=\box51
+\bmb@boxshadowballlarge=\box52
+\bmb@temp=\dimen172
+\bmb@dima=\dimen173
+\bmb@dimb=\dimen174
+\bmb@prevheight=\dimen175
+)
+\beamer@blockheadheight=\dimen176
+))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbaselocalstr
+ucture.sty (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/tools/enumerat
+e.sty
+Package: enumerate 2015/07/23 v3.00 enumerate extensions (DPC)
+\@enLab=\toks32
+)
+\c@figure=\count142
+\c@table=\count143
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasenavigati
+on.sty
+\beamer@section@min@dim=\dimen177
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasetheorems
+.sty (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2018/12/01 v2.17b AMS math features
+\@mathmargin=\skip51
+For additional information on amsmath, use the `?' option.
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks33
+\ex@=\dimen178
+)) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen179
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count144
+LaTeX Info: Redefining \frac on input line 223.
+\uproot@=\count145
+\leftroot@=\count146
+LaTeX Info: Redefining \overline on input line 385.
+\classnum@=\count147
+\DOTSCASE@=\count148
+LaTeX Info: Redefining \ldots on input line 482.
+LaTeX Info: Redefining \dots on input line 485.
+LaTeX Info: Redefining \cdots on input line 606.
+\Mathstrutbox@=\box53
+\strutbox@=\box54
+\big@size=\dimen180
+LaTeX Font Info:    Redeclaring font encoding OML on input line 729.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 730.
+\macc@depth=\count149
+\c@MaxMatrixCols=\count150
+\dotsspace@=\muskip11
+\c@parentequation=\count151
+\dspbrk@lvl=\count152
+\tag@help=\toks34
+\row@=\count153
+\column@=\count154
+\maxfields@=\count155
+\andhelp@=\toks35
+\eqnshift@=\dimen181
+\alignsep@=\dimen182
+\tagshift@=\dimen183
+\tagwidth@=\dimen184
+\totwidth@=\dimen185
+\lineht@=\dimen186
+\@envbody=\toks36
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks37
+LaTeX Info: Redefining \[ on input line 2844.
+LaTeX Info: Redefining \] on input line 2845.
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/amscls/amsthm.sty
+Package: amsthm 2017/10/31 v2.20.4
+\thm@style=\toks38
+\thm@bodyfont=\toks39
+\thm@headfont=\toks40
+\thm@notefont=\toks41
+\thm@headpunct=\toks42
+\thm@preskip=\skip54
+\thm@postskip=\skip55
+\thm@headsep=\skip56
+\dth@everypar=\toks43
+)
+\c@theorem=\count156
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerbasethemes.s
+ty))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerthemedefault
+.sty
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerfontthemedef
+ault.sty)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamercolorthemede
+fault.sty)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerinnerthemede
+fault.sty
+\beamer@dima=\dimen187
+\beamer@dimb=\dimen188
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamer/beamerouterthemede
+fault.sty))) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/lm/lmodern.s
+ty
+Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/lmm/m/it on input line 23.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/lmsy/m/n on input line 24.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 25.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 26.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/lmm/b/it on input line 27.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/lmsy/b/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/lmex/m/n on input line 29.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 31.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 32.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/lmr/m/it on input line 33.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/lmr/bx/n on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 36.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/lmr/bx/it on input line 37.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/base/fixltx2e.sty
+Package: fixltx2e 2016/12/29 v2.1a fixes to LaTeX (obsolete)
+Applying: [2015/01/01] Old fixltx2e package on input line 46.
+
+Package fixltx2e Warning: fixltx2e is not required with releases after 2015
+(fixltx2e)                All fixes are now in the LaTeX kernel.
+(fixltx2e)                See the latexrelease package for details.
+
+Already applied: [0000/00/00] Old fixltx2e package on input line 53.
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.sty
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/l3packages/xparse/xparse.
+sty (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2019-09-28 L3 programming layer (loader) 
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2019-09-28 L3 programming layer (code)
+\ucharcat@table=\catcodetable5
+\c_max_int=\count157
+\l_tmpa_int=\count158
+\l_tmpb_int=\count159
+\g_tmpa_int=\count160
+\g_tmpb_int=\count161
+\l__seq_internal_a_int=\count162
+\l__seq_internal_b_int=\count163
+\g__kernel_prg_map_int=\count164
+\c__ior_term_noprompt_ior=\count165
+\c_log_iow=\count166
+\l_iow_line_count_int=\count167
+\l__iow_line_target_int=\count168
+\l__iow_one_indent_int=\count169
+\l__iow_indent_int=\count170
+\c_zero_dim=\dimen189
+\c_max_dim=\dimen190
+\l_tmpa_dim=\dimen191
+\l_tmpb_dim=\dimen192
+\g_tmpa_dim=\dimen193
+\g_tmpb_dim=\dimen194
+\c_zero_skip=\skip57
+\c_max_skip=\skip58
+\l_tmpa_skip=\skip59
+\l_tmpb_skip=\skip60
+\g_tmpa_skip=\skip61
+\g_tmpb_skip=\skip62
+\c_zero_muskip=\muskip12
+\c_max_muskip=\muskip13
+\l_tmpa_muskip=\muskip14
+\l_tmpb_muskip=\muskip15
+\g_tmpa_muskip=\muskip16
+\g_tmpb_muskip=\muskip17
+\l_keys_choice_int=\count171
+\l__intarray_loop_int=\count172
+\c__intarray_sp_dim=\dimen195
+\g__intarray_font_int=\count173
+\c__fp_leading_shift_int=\count174
+\c__fp_middle_shift_int=\count175
+\c__fp_trailing_shift_int=\count176
+\c__fp_big_leading_shift_int=\count177
+\c__fp_big_middle_shift_int=\count178
+\c__fp_big_trailing_shift_int=\count179
+\c__fp_Bigg_leading_shift_int=\count180
+\c__fp_Bigg_middle_shift_int=\count181
+\c__fp_Bigg_trailing_shift_int=\count182
+\g__fp_array_int=\count183
+\l__fp_array_loop_int=\count184
+\l__sort_length_int=\count185
+\l__sort_min_int=\count186
+\l__sort_top_int=\count187
+\l__sort_max_int=\count188
+\l__sort_true_max_int=\count189
+\l__sort_block_int=\count190
+\l__sort_begin_int=\count191
+\l__sort_end_int=\count192
+\l__sort_A_int=\count193
+\l__sort_B_int=\count194
+\l__sort_C_int=\count195
+\l__str_internal_int=\count196
+\l__tl_analysis_normal_int=\count197
+\l__tl_analysis_index_int=\count198
+\l__tl_analysis_nesting_int=\count199
+\l__tl_analysis_type_int=\count266
+\l__regex_internal_a_int=\count267
+\l__regex_internal_b_int=\count268
+\l__regex_internal_c_int=\count269
+\l__regex_balance_int=\count270
+\l__regex_group_level_int=\count271
+\l__regex_mode_int=\count272
+\c__regex_cs_in_class_mode_int=\count273
+\c__regex_cs_mode_int=\count274
+\l__regex_catcodes_int=\count275
+\l__regex_default_catcodes_int=\count276
+\c__regex_catcode_L_int=\count277
+\c__regex_catcode_O_int=\count278
+\c__regex_catcode_A_int=\count279
+\c__regex_all_catcodes_int=\count280
+\l__regex_show_lines_int=\count281
+\l__regex_min_state_int=\count282
+\l__regex_max_state_int=\count283
+\l__regex_left_state_int=\count284
+\l__regex_right_state_int=\count285
+\l__regex_capturing_group_int=\count286
+\l__regex_min_pos_int=\count287
+\l__regex_max_pos_int=\count288
+\l__regex_curr_pos_int=\count289
+\l__regex_start_pos_int=\count290
+\l__regex_success_pos_int=\count291
+\l__regex_curr_char_int=\count292
+\l__regex_curr_catcode_int=\count293
+\l__regex_last_char_int=\count294
+\l__regex_case_changed_char_int=\count295
+\l__regex_curr_state_int=\count296
+\l__regex_step_int=\count297
+\l__regex_min_active_int=\count298
+\l__regex_max_active_int=\count299
+\l__regex_replacement_csnames_int=\count300
+\l__regex_match_count_int=\count301
+\l__regex_min_submatch_int=\count302
+\l__regex_submatch_int=\count303
+\l__regex_zeroth_submatch_int=\count304
+\g__regex_trace_regex_int=\count305
+\c_empty_box=\box55
+\l_tmpa_box=\box56
+\l_tmpb_box=\box57
+\g_tmpa_box=\box58
+\g_tmpb_box=\box59
+\l__box_top_dim=\dimen196
+\l__box_bottom_dim=\dimen197
+\l__box_left_dim=\dimen198
+\l__box_right_dim=\dimen199
+\l__box_top_new_dim=\dimen256
+\l__box_bottom_new_dim=\dimen257
+\l__box_left_new_dim=\dimen258
+\l__box_right_new_dim=\dimen259
+\l__box_internal_box=\box60
+\l__coffin_internal_box=\box61
+\l__coffin_internal_dim=\dimen260
+\l__coffin_offset_x_dim=\dimen261
+\l__coffin_offset_y_dim=\dimen262
+\l__coffin_x_dim=\dimen263
+\l__coffin_y_dim=\dimen264
+\l__coffin_x_prime_dim=\dimen265
+\l__coffin_y_prime_dim=\dimen266
+\c_empty_coffin=\box62
+\l__coffin_aligned_coffin=\box63
+\l__coffin_aligned_internal_coffin=\box64
+\l_tmpa_coffin=\box65
+\l_tmpb_coffin=\box66
+\g_tmpa_coffin=\box67
+\g_tmpb_coffin=\box68
+\l__coffin_bounding_shift_dim=\dimen267
+\l__coffin_left_corner_dim=\dimen268
+\l__coffin_right_corner_dim=\dimen269
+\l__coffin_bottom_corner_dim=\dimen270
+\l__coffin_top_corner_dim=\dimen271
+\l__coffin_scaled_total_height_dim=\dimen272
+\l__coffin_scaled_width_dim=\dimen273
+\c__coffin_empty_coffin=\box69
+\l__coffin_display_coffin=\box70
+\l__coffin_display_coord_coffin=\box71
+\l__coffin_display_pole_coffin=\box72
+\l__coffin_display_offset_dim=\dimen274
+\l__coffin_display_x_dim=\dimen275
+\l__coffin_display_y_dim=\dimen276
+\g__char_data_ior=\read2
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/l3kernel/l3deprecation.de
+f
+File: l3deprecation.def 2019-04-06 v L3 Deprecated functions
+))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/l3backend/l3backend-pdfmo
+de.def
+File: l3backend-pdfmode.def 2019-04-06 v L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count306
+\l__pdf_internal_box=\box73
+))
+Package: xparse 2019-05-28 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count307
+\g__xparse_grabber_int=\count308
+\l__xparse_m_args_int=\count309
+\l__xparse_v_nesting_int=\count310
+)
+Package: fontspec 2019/03/15 v2.7c Font selection for XeLaTeX and LuaLaTeX
+Lua module: fontspec 2019/03/15 2.7c Font selection for XeLaTeX and LuaLaTeX
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec-luatex.
+sty
+Package: fontspec-luatex 2019/03/15 v2.7c Font selection for XeLaTeX and LuaLaTe
+X
+\l__fontspec_script_int=\count311
+\l__fontspec_language_int=\count312
+\l__fontspec_strnum_int=\count313
+\l__fontspec_tmp_int=\count314
+\l__fontspec_tmpa_int=\count315
+\l__fontspec_tmpb_int=\count316
+\l__fontspec_tmpc_int=\count317
+\l__fontspec_em_int=\count318
+\l__fontspec_emdef_int=\count319
+\l__fontspec_strong_int=\count320
+\l__fontspec_strongdef_int=\count321
+\l__fontspec_tmpa_dim=\dimen277
+\l__fontspec_tmpb_dim=\dimen278
+\l__fontspec_tmpc_dim=\dimen279
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/base/tuenc.def
+File: tuenc.def 2018/08/11 v2.0j Standard LaTeX file
+LaTeX Font Info:    Redeclaring font encoding TU on input line 82.
+)) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.cfg)
+LaTeX Info: Redefining \itshape on input line 3783.
+LaTeX Info: Redefining \slshape on input line 3788.
+LaTeX Info: Redefining \scshape on input line 3793.
+LaTeX Info: Redefining \upshape on input line 3798.
+LaTeX Info: Redefining \em on input line 3828.
+LaTeX Info: Redefining \emph on input line 3853.
+LaTeX Font Info:    Font shape `TU/lmss/m/it' in size <12> not available
+(Font)              Font shape `TU/lmss/m/sl' tried instead on input line 3903.
+))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamertheme-metropolis/be
+amerthememetropolis.sty
+Package: beamerthememetropolis 2017/01/23 v1.2 Metropolis Beamer theme
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/pgfopts/pgfopts.sty
+Package: pgfopts 2014/07/10 v2.1a LaTeX package options with pgfkeys
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgfkeys.sty
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgfkeys.c
+ode.tex))
+\pgfopts@list@add@a@toks=\toks44
+\pgfopts@list@add@b@toks=\toks45
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamertheme-metropolis/be
+amerinnerthememetropolis.sty
+Package: beamerinnerthememetropolis 2017/01/23 Metropolis inner theme
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count322
+\calc@Bcount=\count323
+\calc@Adimen=\dimen280
+\calc@Bdimen=\dimen281
+\calc@Askip=\skip63
+\calc@Bskip=\skip64
+LaTeX Info: Redefining \setlength on input line 80.
+LaTeX Info: Redefining \addtolength on input line 81.
+\calc@Ccount=\count324
+\calc@Cskip=\skip65
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/pgf/frontendlayer/tikz.st
+y (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/pgf/basiclayer/pgf.sty
+Package: pgf 2019/08/03 v3.1.4b (3.1.4b)
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulesh
+apes.code.tex
+File: pgfmoduleshapes.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfnodeparttextbox=\box74
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulepl
+ot.code.tex
+File: pgfmoduleplot.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp
+-version-0-65.sty
+Package: pgfcomp-version-0-65 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@nodesepstart=\dimen282
+\pgf@nodesepend=\dimen283
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/pgf/compatibility/pgfcomp
+-version-1-18.sty
+Package: pgfcomp-version-1-18 2019/08/03 v3.1.4b (3.1.4b)
+)) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/pgf/utilities/pgffor.s
+ty (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/pgf/math/pgfmath.sty
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.t
+ex))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/utilities/pgffor.co
+de.tex
+Package: pgffor 2019/08/03 v3.1.4b (3.1.4b)
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/math/pgfmath.code.t
+ex)
+\pgffor@iter=\dimen284
+\pgffor@skip=\dimen285
+\pgffor@stack=\toks46
+\pgffor@toks=\toks47
+))
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/
+tikz.code.tex
+Package: tikz 2019/08/03 v3.1.4b (3.1.4b)
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/libraries/pgflibrar
+yplothandlers.code.tex
+File: pgflibraryplothandlers.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgf@plot@mark@count=\count325
+\pgfplotmarksize=\dimen286
+)
+\tikz@lastx=\dimen287
+\tikz@lasty=\dimen288
+\tikz@lastxsaved=\dimen289
+\tikz@lastysaved=\dimen290
+\tikz@lastmovetox=\dimen291
+\tikz@lastmovetoy=\dimen292
+\tikzleveldistance=\dimen293
+\tikzsiblingdistance=\dimen294
+\tikz@figbox=\box75
+\tikz@figbox@bg=\box76
+\tikz@tempbox=\box77
+\tikz@tempbox@bg=\box78
+\tikztreelevel=\count326
+\tikznumberofchildren=\count327
+\tikznumberofcurrentchild=\count328
+\tikz@fig@count=\count329
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/modules/pgfmodulema
+trix.code.tex
+File: pgfmodulematrix.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+\pgfmatrixcurrentrow=\count330
+\pgfmatrixcurrentcolumn=\count331
+\pgf@matrix@numberofcolumns=\count332
+)
+\tikz@expandcount=\count333
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/
+libraries/tikzlibrarytopaths.code.tex
+File: tikzlibrarytopaths.code.tex 2019/08/03 v3.1.4b (3.1.4b)
+)))
+\metropolis@titleseparator@linewidth=\skip66
+\metropolis@progressonsectionpage=\skip67
+\metropolis@progressonsectionpage@linewidth=\skip68
+\metropolis@blocksep=\skip69
+\metropolis@blockadjust=\skip70
+\metropolis@parskip=\skip71
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamertheme-metropolis/be
+amerouterthememetropolis.sty
+Package: beamerouterthememetropolis 2017/01/23 Metropolis outer theme
+\metropolis@frametitle@padding=\skip72
+\metropolis@progressinheadfoot=\skip73
+\metropolis@progressinheadfoot@linewidth=\skip74
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamertheme-metropolis/be
+amercolorthememetropolis.sty
+Package: beamercolorthememetropolis 2017/01/23 Metropolis color theme
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/beamertheme-metropolis/be
+amerfontthememetropolis.sty
+Package: beamerfontthememetropolis 2017/01/23 Metropolis font theme
+\c@fontsnotfound=\count334
+luaotfload | cache : Lookup cache loaded from /Users/gjlahman/Library/TinyTeX/te
+xmf-var/luatex-cache/generic/names/luaotfload-lookup-cache.luc.
+luaotfload | db : Reload initiated (formats: otf,ttf,ttc); reason: "Font Fira Sa
+ns Light not found.".
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+
+Package beamerthememetropolis Warning: Could not find Fira Sans fonts on input l
+ine 95.
+
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+luaotfload | resolve : sequence of 3 lookups yielded nothing appropriate.
+
+Package beamerthememetropolis Warning: Could not find Fira Mono fonts on input l
+ine 95.
+
+)) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/upquote/upquote.sty
+Package: upquote 2012/04/19 v1.3 upright-quote and grave-accent glyphs in verbat
+im
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2018/08/11 v2.0j Standard LaTeX package
+Package textcomp Info: Sub-encoding information:
+(textcomp)               5 = only ISO-Adobe without \textcurrency
+(textcomp)               4 = 5 + \texteuro
+(textcomp)               3 = 4 + \textohm
+(textcomp)               2 = 3 + \textestimated + \textcurrency
+(textcomp)               1 = TS1 - \textcircled - \t
+(textcomp)               0 = TS1 (full)
+(textcomp)             Font families with sub-encoding setting implement
+(textcomp)             only a restricted character set as indicated.
+(textcomp)             Family '?' is the default used for unknown fonts.
+(textcomp)             See the documentation for details.
+Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/base/ts1enc.def
+File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
+)
+LaTeX Info: Redefining \oldstylenums on input line 334.
+Package textcomp Info: Setting cmr sub-encoding to TS1/0 on input line 349.
+Package textcomp Info: Setting cmss sub-encoding to TS1/0 on input line 350.
+Package textcomp Info: Setting cmtt sub-encoding to TS1/0 on input line 351.
+Package textcomp Info: Setting cmvtt sub-encoding to TS1/0 on input line 352.
+Package textcomp Info: Setting cmbr sub-encoding to TS1/0 on input line 353.
+Package textcomp Info: Setting cmtl sub-encoding to TS1/0 on input line 354.
+Package textcomp Info: Setting ccr sub-encoding to TS1/0 on input line 355.
+Package textcomp Info: Setting ptm sub-encoding to TS1/4 on input line 356.
+Package textcomp Info: Setting pcr sub-encoding to TS1/4 on input line 357.
+Package textcomp Info: Setting phv sub-encoding to TS1/4 on input line 358.
+Package textcomp Info: Setting ppl sub-encoding to TS1/3 on input line 359.
+Package textcomp Info: Setting pag sub-encoding to TS1/4 on input line 360.
+Package textcomp Info: Setting pbk sub-encoding to TS1/4 on input line 361.
+Package textcomp Info: Setting pnc sub-encoding to TS1/4 on input line 362.
+Package textcomp Info: Setting pzc sub-encoding to TS1/4 on input line 363.
+Package textcomp Info: Setting bch sub-encoding to TS1/4 on input line 364.
+Package textcomp Info: Setting put sub-encoding to TS1/5 on input line 365.
+Package textcomp Info: Setting uag sub-encoding to TS1/5 on input line 366.
+Package textcomp Info: Setting ugq sub-encoding to TS1/5 on input line 367.
+Package textcomp Info: Setting ul8 sub-encoding to TS1/4 on input line 368.
+Package textcomp Info: Setting ul9 sub-encoding to TS1/4 on input line 369.
+Package textcomp Info: Setting augie sub-encoding to TS1/5 on input line 370.
+Package textcomp Info: Setting dayrom sub-encoding to TS1/3 on input line 371.
+Package textcomp Info: Setting dayroms sub-encoding to TS1/3 on input line 372.
+Package textcomp Info: Setting pxr sub-encoding to TS1/0 on input line 373.
+Package textcomp Info: Setting pxss sub-encoding to TS1/0 on input line 374.
+Package textcomp Info: Setting pxtt sub-encoding to TS1/0 on input line 375.
+Package textcomp Info: Setting txr sub-encoding to TS1/0 on input line 376.
+Package textcomp Info: Setting txss sub-encoding to TS1/0 on input line 377.
+Package textcomp Info: Setting txtt sub-encoding to TS1/0 on input line 378.
+Package textcomp Info: Setting lmr sub-encoding to TS1/0 on input line 379.
+Package textcomp Info: Setting lmdh sub-encoding to TS1/0 on input line 380.
+Package textcomp Info: Setting lmss sub-encoding to TS1/0 on input line 381.
+Package textcomp Info: Setting lmssq sub-encoding to TS1/0 on input line 382.
+Package textcomp Info: Setting lmvtt sub-encoding to TS1/0 on input line 383.
+Package textcomp Info: Setting lmtt sub-encoding to TS1/0 on input line 384.
+Package textcomp Info: Setting qhv sub-encoding to TS1/0 on input line 385.
+Package textcomp Info: Setting qag sub-encoding to TS1/0 on input line 386.
+Package textcomp Info: Setting qbk sub-encoding to TS1/0 on input line 387.
+Package textcomp Info: Setting qcr sub-encoding to TS1/0 on input line 388.
+Package textcomp Info: Setting qcs sub-encoding to TS1/0 on input line 389.
+Package textcomp Info: Setting qpl sub-encoding to TS1/0 on input line 390.
+Package textcomp Info: Setting qtm sub-encoding to TS1/0 on input line 391.
+Package textcomp Info: Setting qzc sub-encoding to TS1/0 on input line 392.
+Package textcomp Info: Setting qhvc sub-encoding to TS1/0 on input line 393.
+Package textcomp Info: Setting futs sub-encoding to TS1/4 on input line 394.
+Package textcomp Info: Setting futx sub-encoding to TS1/4 on input line 395.
+Package textcomp Info: Setting futj sub-encoding to TS1/4 on input line 396.
+Package textcomp Info: Setting hlh sub-encoding to TS1/3 on input line 397.
+Package textcomp Info: Setting hls sub-encoding to TS1/3 on input line 398.
+Package textcomp Info: Setting hlst sub-encoding to TS1/3 on input line 399.
+Package textcomp Info: Setting hlct sub-encoding to TS1/5 on input line 400.
+Package textcomp Info: Setting hlx sub-encoding to TS1/5 on input line 401.
+Package textcomp Info: Setting hlce sub-encoding to TS1/5 on input line 402.
+Package textcomp Info: Setting hlcn sub-encoding to TS1/5 on input line 403.
+Package textcomp Info: Setting hlcw sub-encoding to TS1/5 on input line 404.
+Package textcomp Info: Setting hlcf sub-encoding to TS1/5 on input line 405.
+Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
+Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
+Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
+Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
+))
+Package hyperref Info: Option `breaklinks' set `true' on input line 34.
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2019/01/15
+Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
+\FV@CodeLineNo=\count335
+\FV@InFile=\read3
+\FV@TabBox=\box79
+\c@FancyVerbLine=\count336
+\FV@StepNumber=\count337
+\FV@OutFile=\write5
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/framed/framed.sty
+Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
+\OuterFrameSep=\skip75
+\fb@frw=\dimen295
+\fb@frh=\dimen296
+\FrameRule=\dimen297
+\FrameSep=\dimen298
+) (/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/oberdiek/grffile.sty
+Package: grffile 2017/06/30 v1.18 Extended file name support for graphics (HO)
+Package grffile Info: Option `multidot' is set to `true'.
+Package grffile Info: Option `extendedchars' is set to `false'.
+Package grffile Info: Option `space' is set to `true'.
+Package grffile Info: \Gin@ii of package `graphicx' fixed on input line 494.
+) (./eda.aux)
+\openout1 = eda.aux
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 121.
+LaTeX Font Info:    ... okay on input line 121.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 121.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 121.
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 121.
+*geometry* driver: auto-detecting
+*geometry* detected driver: luatex
+*geometry* verbose mode - [ preamble ] result:
+* driver: luatex
+* paper: custom
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: includehead includefoot 
+* h-part:(L,W,R)=(28.45274pt, 398.3386pt, 28.45274pt)
+* v-part:(T,H,B)=(0.0pt, 256.0748pt, 0.0pt)
+* \paperwidth=455.24408pt
+* \paperheight=256.0748pt
+* \textwidth=398.3386pt
+* \textheight=227.62207pt
+* \oddsidemargin=-43.81725pt
+* \evensidemargin=-43.81725pt
+* \topmargin=-72.26999pt
+* \headheight=14.22636pt
+* \headsep=0.0pt
+* \topskip=12.0pt
+* \footskip=14.22636pt
+* \marginparwidth=4.0pt
+* \marginparsep=10.0pt
+* \columnsep=10.0pt
+* \skip\footins=10.8pt plus 4.0pt minus 2.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidefalse
+* \@mparswitchfalse
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
+
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/oberdiek/epstopdf-base.st
+y
+Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/oberdiek/grfext.sty
+Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
+)
+Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 43
+8.
+Package grfext Info: Graphics extension search list:
+(grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG
+,.JBIG2,.JB2,.eps]
+(grfext)             \AppendGraphicsExtensions on input line 456.
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/latexconfig/epstopdf-sys.
+cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+
+)) ABD: EveryShipout initializing macros
+\AtBeginShipoutBox=\box80
+Package hyperref Info: Link coloring OFF on input line 121.
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2019/09/12 v2.45 Cross-referencing by name of section
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/generic/oberdiek/gettitlestring
+.sty
+Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
+)
+\c@section@level=\count338
+)
+LaTeX Info: Redefining \ref on input line 121.
+LaTeX Info: Redefining \pageref on input line 121.
+LaTeX Info: Redefining \nameref on input line 121.
+(./eda.out) (./eda.out)
+\@outlinefile=\write6
+
+\openout6 = eda.out
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/lmr/m/n --> OT1/cmss/m/n on input line 121.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/lmr/bx/n --> OT1/cmss/bx/n on input line 121.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmss/m/n --> OT1/lmss/m/n on input line 121.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmss/bx/n --> OT1/lmss/bx/n on input line 121.
+\symnumbers=\mathgroup6
+\sympureletters=\mathgroup7
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
+(Font)                  OT1/lmss/m/n --> TU/lmr/m/n on input line 121.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/lmr/bx/n --> TU/lmss/bx/n on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/lmr/bx/n --> TU/lmss/bx/n on input line 121.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
+(Font)                  OT1/lmss/m/n --> TU/lmss/m/n on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  OT1/lmss/bx/n --> TU/lmss/m/n on input line 121.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/lmr/m/it --> TU/lmss/m/it on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/lmr/bx/it --> TU/lmss/m/it on input line 121.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  OT1/lmtt/m/n --> TU/lmtt/m/n on input line 121.
+LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
+(Font)                  TU/lmss/m/n --> TU/lmss/bx/n on input line 121.
+LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
+(Font)                  TU/lmss/m/it --> TU/lmss/bx/it on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
+(Font)                  OT1/lmss/bx/n --> TU/lmr/bx/n on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  TU/lmss/bx/n --> TU/lmss/bx/n on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
+(Font)                  TU/lmss/m/n --> TU/lmss/bx/n on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  TU/lmss/m/it --> TU/lmss/bx/it on input line 121.
+LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
+(Font)                  TU/lmtt/m/n --> TU/lmtt/bx/n on input line 121.
+
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/translator/translator-bas
+ic-dictionary-English.dict
+Dictionary: translator-basic-dictionary, Language: English 
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/translator/translator-bib
+liography-dictionary-English.dict
+Dictionary: translator-bibliography-dictionary, Language: English 
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/translator/translator-env
+ironment-dictionary-English.dict
+Dictionary: translator-environment-dictionary, Language: English 
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/translator/translator-mon
+ths-dictionary-English.dict
+Dictionary: translator-months-dictionary, Language: English 
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/translator/translator-num
+bers-dictionary-English.dict
+Dictionary: translator-numbers-dictionary, Language: English 
+)
+(/Users/gjlahman/Library/TinyTeX/texmf-dist/tex/latex/translator/translator-the
+orem-dictionary-English.dict
+Dictionary: translator-theorem-dictionary, Language: English 
+) (./eda.nav)
+Overfull \vbox (45.90692pt too high) detected at line 122
+ []
+
+[1
+
+{/Users/gjlahman/Library/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+[2
+
+] [3
+
+]
+\openout4 = eda.vrb
+ (./eda.vrb
+LaTeX Font Info:    Font shape `TU/lmtt/bx/n' in size <10.95> not available
+(Font)              Font shape `TU/lmtt/b/n' tried instead on input line 7.
+)
+Overfull \vbox (24.34093pt too high) detected at line 172
+ []
+
+[4
+
+]
+\openout4 = eda.vrb
+ (./eda.vrb) [5
+
+]
+<eda_files/figure-beamer/unnamed-chunk-5-1.pdf, id=46, 361.35pt x 216.81pt>
+File: eda_files/figure-beamer/unnamed-chunk-5-1.pdf Graphic file (type pdf)
+<use eda_files/figure-beamer/unnamed-chunk-5-1.pdf>
+Package luatex.def Info: eda_files/figure-beamer/unnamed-chunk-5-1.pdf  used on 
+input line 208.
+(luatex.def)             Requested size: 361.34912pt x 216.80946pt.
+
+Overfull \vbox (26.40344pt too high) detected at line 208
+ []
+
+[6
+
+<./eda_files/figure-beamer/unnamed-chunk-5-1.pdf>]
+<eda_files/figure-beamer/unnamed-chunk-6-1.pdf, id=56, 361.35pt x 216.81pt>
+File: eda_files/figure-beamer/unnamed-chunk-6-1.pdf Graphic file (type pdf)
+<use eda_files/figure-beamer/unnamed-chunk-6-1.pdf>
+Package luatex.def Info: eda_files/figure-beamer/unnamed-chunk-6-1.pdf  used on 
+input line 215.
+(luatex.def)             Requested size: 361.34912pt x 216.80946pt.
+
+Overfull \vbox (26.40344pt too high) detected at line 215
+ []
+
+[7
+
+<./eda_files/figure-beamer/unnamed-chunk-6-1.pdf>]
+<eda_files/figure-beamer/unnamed-chunk-7-1.pdf, id=66, 867.24pt x 578.16pt>
+File: eda_files/figure-beamer/unnamed-chunk-7-1.pdf Graphic file (type pdf)
+<use eda_files/figure-beamer/unnamed-chunk-7-1.pdf>
+Package luatex.def Info: eda_files/figure-beamer/unnamed-chunk-7-1.pdf  used on 
+input line 221.
+(luatex.def)             Requested size: 273.40701pt x 182.27133pt.
+[8
+
+<./eda_files/figure-beamer/unnamed-chunk-7-1.pdf>]
+<eda_files/figure-beamer/unnamed-chunk-8-1.pdf, id=76, 361.35pt x 216.81pt>
+File: eda_files/figure-beamer/unnamed-chunk-8-1.pdf Graphic file (type pdf)
+<use eda_files/figure-beamer/unnamed-chunk-8-1.pdf>
+Package luatex.def Info: eda_files/figure-beamer/unnamed-chunk-8-1.pdf  used on 
+input line 227.
+(luatex.def)             Requested size: 361.34912pt x 216.80946pt.
+
+Overfull \vbox (34.40344pt too high) detected at line 227
+ []
+
+[9
+
+<./eda_files/figure-beamer/unnamed-chunk-8-1.pdf>]
+<eda_files/figure-beamer/unnamed-chunk-9-1.pdf, id=86, 361.35pt x 216.81pt>
+File: eda_files/figure-beamer/unnamed-chunk-9-1.pdf Graphic file (type pdf)
+<use eda_files/figure-beamer/unnamed-chunk-9-1.pdf>
+Package luatex.def Info: eda_files/figure-beamer/unnamed-chunk-9-1.pdf  used on 
+input line 233.
+(luatex.def)             Requested size: 361.34912pt x 216.80946pt.
+
+Overfull \vbox (34.40344pt too high) detected at line 233
+ []
+
+[10
+
+<./eda_files/figure-beamer/unnamed-chunk-9-1.pdf>]
+<eda_files/figure-beamer/unnamed-chunk-10-1.pdf, id=96, 361.35pt x 216.81pt>
+File: eda_files/figure-beamer/unnamed-chunk-10-1.pdf Graphic file (type pdf)
+<use eda_files/figure-beamer/unnamed-chunk-10-1.pdf>
+Package luatex.def Info: eda_files/figure-beamer/unnamed-chunk-10-1.pdf  used on
+ input line 239.
+(luatex.def)             Requested size: 361.34912pt x 216.80946pt.
+
+Overfull \vbox (34.40344pt too high) detected at line 239
+ []
+
+[11
+
+<./eda_files/figure-beamer/unnamed-chunk-10-1.pdf>] [12
+
+]
+\tf@nav=\write7
+
+\openout7 = eda.nav
+\tf@toc=\write8
+
+\openout8 = eda.toc
+\tf@snm=\write9
+
+\openout9 = eda.snm
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 257.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 257.
+(./eda.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 257.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 257.
+Package rerunfilecheck Info: File `eda.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
+)
+
+Here is how much of LuaTeX's memory you used:
+ 33611 strings out of 494291
+ 100000,953878 words of node,token memory allocated
+ 8445 words of node memory still in use:
+   31 hlist, 8 vlist, 5 rule, 78 disc, 2 local_par, 144 glue, 57 kern, 19 penalt
+y, 736 glyph, 44 attribute, 71 glue_spec, 44 attribute_list, 1 shape, 4 write, 1
+6 pdf_colorstack nodes
+   avail lists: 1:5,2:500,3:727,4:242,5:100,6:28,7:1255,8:3,9:141,10:16,11:86,12
+:1
+ 36631 multiletter control sequences out of 65536+600000
+ 40 fonts using 7519759 bytes
+ 61i,13n,73p,1803b,609s stack positions out of 5000i,500n,10000p,200000b,100000s
+</Users/gjlahman/Library/TinyTeX/texmf-dist/fonts/opentype/public/lm/lmmono8-reg
+ular.otf></Users/gjlahman/Library/TinyTeX/texmf-dist/fonts/opentype/public/lm/lm
+monolt10-bold.otf></Users/gjlahman/Library/TinyTeX/texmf-dist/fonts/opentype/pub
+lic/lm/lmmono10-regular.otf></Users/gjlahman/Library/TinyTeX/texmf-dist/fonts/op
+entype/public/lm/lmsans8-regular.otf></Users/gjlahman/Library/TinyTeX/texmf-dist
+/fonts/opentype/public/lm/lmsans10-regular.otf></Users/gjlahman/Library/TinyTeX/
+texmf-dist/fonts/opentype/public/lm/lmsans12-regular.otf></Users/gjlahman/Librar
+y/TinyTeX/texmf-dist/fonts/opentype/public/lm/lmsans10-bold.otf>
+Output written on eda.pdf (12 pages, 535840 bytes).
+
+PDF statistics: 160 PDF objects out of 1000 (max. 8388607)
+ 105 compressed objects within 2 object streams
+ 25 named destinations out of 1000 (max. 131072)
+ 16 words of extra memory for PDF output out of 10000 (max. 100000000)
+

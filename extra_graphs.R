@@ -30,6 +30,6 @@ ggplot(data=full_dat, aes(x=WISC4_PictureConcepts, SRS_TotalRawScore, col=Primar
 
 ggplot(data=full_dat, aes(x=EdinburghHandedness_Integer, mABC_AimingAndCatching.Component.StandardScore, col=PrimaryDiagnosis)) + geom_point() + geom_jitter()
 
-
+ggplot(data=filter(full_dat, full_dat$SRS_VERSION==2), aes(x=ID, SRS_TotalRawScore, col=as.factor(round(mABC_AGE)))) + geom_point() + geom_jitter()
 
 

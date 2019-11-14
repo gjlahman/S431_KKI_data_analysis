@@ -5,18 +5,19 @@ author:
 - Rowan Lavelle
 - Jordan Majoros
 - Matthew Zelenin
-subtitle: STAT-S 431
 date: "Fall 2019"
-institute: 
 output:
   beamer_presentation:
+    incremental: no
     keep_tex: no
-    theme: metropolis
     latex_engine: lualatex
     slide_level: 2
+    theme: metropolis
+  ioslides_presentation:
     incremental: no
-    #color: metropolis-highconstrast
+institute: null
 fontsize: 12pt
+subtitle: STAT-S 431
 classoption: aspectratio=169
 ---
 
@@ -92,15 +93,15 @@ table(factor(WISC4_full_dat$PrimaryDiagnosis), factor(WISC4_full_dat$ADHD_Subtyp
 
 ## Motor Skills and Social Responsivness Score
 ```{r message=FALSE, warning=FALSE, fig.width = 5, fig.height = 3, echo=FALSE}
-ggplot(full_dat, aes(y=SRS_TotalRawScore, x=mABC_TotalStandardScore)) + 
-  geom_jitter() 
+ggplot(full_dat, aes(y=SRS_TotalRawScore, x=mABC_TotalStandardScore,col=PrimaryDiagnosis)) + 
+  geom_jitter() + geom_smooth()
 ```
 
 ## Log Motor Skills and Social Responsivness Score by Diagnosis
 ```{r message=FALSE, warning=FALSE, fig.width = 5, fig.height = 3, echo=FALSE}
 ggplot(full_dat, aes(y=SRS_TotalRawScore, x=mABC_TotalStandardScore)) + 
   geom_jitter() + 
-  facet_grid(. ~ PrimaryDiagnosis)
+  facet_grid(. ~ PrimaryDiagnosis) + geom_smooth()
 ```
 
 ## Scatterplot Matrix for WISC_4
@@ -115,14 +116,14 @@ scatterplotMatrix(WISC4_full_dat[c('WISC4_Vocabulary', 'WISC4_Information', 'WIS
 ggplot(WISC4_full_dat, aes(x= WISC4_Vocabulary + WISC4_Information + WISC4_Similarities + WISC4_BlockDesign + WISC4_PictureConcepts + WISC4_MatrixReasoning, y=mABC_TotalStandardScore)) + 
   geom_jitter() +
   facet_grid(. ~ PrimaryDiagnosis) + 
-  xlab("WISC Total")
+  xlab("WISC Total") + geom_smooth()
 ```
 
 ## WISC Total and Social Responsivness 
 ```{r message=FALSE, warning=FALSE, fig.align='center', fig.width = 5, fig.height = 3, echo=FALSE}
-ggplot(WISC4_full_dat, aes(x= WISC4_Vocabulary + WISC4_Information + WISC4_Similarities + WISC4_BlockDesign + WISC4_PictureConcepts + WISC4_MatrixReasoning, y=SRS_TotalRawScore)) + 
+ggplot(WISC4_full_dat, aes(x= WISC4_Vocabulary + WISC4_Information + WISC4_Similarities + WISC4_BlockDesign + WISC4_PictureConcepts + WISC4_MatrixReasoning, y=SRS_TotalRawScore, col=PrimaryDiagnosis)) + 
   geom_jitter() +
-  xlab("WISC Total")
+  xlab("WISC Total") + geom_smooth()
 ```
 
 ## WISC Total and Social Responsivness by Diagnosis
@@ -130,7 +131,7 @@ ggplot(WISC4_full_dat, aes(x= WISC4_Vocabulary + WISC4_Information + WISC4_Simil
 ggplot(WISC4_full_dat, aes(x= WISC4_Vocabulary + WISC4_Information + WISC4_Similarities + WISC4_BlockDesign + WISC4_PictureConcepts + WISC4_MatrixReasoning, y=SRS_TotalRawScore)) + 
   geom_jitter() +
   facet_grid(. ~ PrimaryDiagnosis) + 
-  xlab("WISC Total")
+  xlab("WISC Total") + geom_smooth()
 ```
 
 

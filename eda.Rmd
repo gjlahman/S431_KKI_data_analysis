@@ -23,9 +23,32 @@ library(alr4)
 library(ggplot2)
 ```
 
+##Introduction
+
+##SLIDE 1
+
+Dr. Mary Beth Nebel created a study that examines the relationship between motor skills and social defecits within a given population of children. The children, aged 8 to 13, completed a motor skills assessment that tested manual dexterity, aiming and catching, and balance. The children also completed a test for intelligence, consisting of assessments of vocabularly, general knowledge, word similarities, block patterns, picture concepts, and matrix reasoning with pictures. 
+
+In terms of scientific context, this experiment provides an insight as to whether you can predict a child's social deficit based on their motor abilities. This would allow another insight as to predicting a child's social deficits and possible disorders. 
+
+The two main social disorders that are examined in this study are ADHD and Autism. These disorders halter someone's 
+
+Autism and ADHD can be difficult to diagnose, as there is no one set medical test. There are methods of diagnosis, which center primarily about the environment of the child and their social behaviors, not as much regarding solidified quantifiable data. 
+
+##SLIDE 2
+
 ## Research Question
 
 Is there a statistically significant difference in predictive power of the motor skills vs. social responsivness model when we include intelligence metrics as predictors?
+
+- discuss which variables are beneficial to answering this research question
+  - mABC_TotalStandardScore - motor skills
+  - WISC scores - the intelligence metrics
+  - SRS_TotalRawAScore - the social responsiveness scale, what we are trying to predict
+
+
+- key variables that were collected
+- describe the disorders being discovered
 
 ## Filtering Data
 
@@ -124,7 +147,7 @@ ggplot(WISC4_full_dat, aes(x=mABC_AGE, y=mABC_TotalStandardScore)) +
 
 ### SRS_TotalRawScore vs mABC_TotalStandardScore
 ```{r message=FALSE, warning=FALSE, fig.align='center'}
-ggplot(full_dat, aes(x=SRS_TotalRawScore, y=mABC_TotalStandardScore)) + 
+ggplot(full_dat, aes(y=SRS_TotalRawScore, x=mABC_TotalStandardScore)) + 
   geom_jitter() + 
   ggtitle('SRS_TotalRawScore vs. mABC Total Standard Score')
 ```

@@ -13,9 +13,6 @@ output:
     latex_engine: lualatex
     slide_level: 2
     theme: metropolis
-  ioslides_presentation:
-    incremental: no
-institute: null
 fontsize: 12pt
 subtitle: STAT-S 431
 classoption: aspectratio=169

@@ -39,13 +39,13 @@ X.None = None$mABC_TotalStandardScore
 Y.None = None$SRS_TotalRawScore
 
 P = as.factor(full_dat$SecondaryDiagnosis)
-X.autism=X.autism[!is.na(predictor) & predictor!='Unknown' & predictor!='']
-Y.autism=Y.autism[!is.na(predictor) & predictor!='Unknown' & predictor!='']
-X.ADHD=X.ADHD[!is.na(predictor) & predictor!='Unknown' & predictor!='']
-Y.ADHD=Y.ADHD[!is.na(predictor) & predictor!='Unknown' & predictor!='']
-X.None=X.None[!is.na(predictor) & predictor!='Unknown' & predictor!='']
-Y.None=Y.None[!is.na(predictor) & predictor!='Unknown' & predictor!='']
-P=P[!is.na(predictor) & predictor!='Unknown' & predictor!='']
+X.autism=X.autism[!is.na(P) & P!='Unknown' & P!='']
+Y.autism=Y.autism[!is.na(P) & P!='Unknown' & P!='']
+X.ADHD=X.ADHD[!is.na(P) & P!='Unknown' & P!='']
+Y.ADHD=Y.ADHD[!is.na(P) & P!='Unknown' & P!='']
+X.None=X.None[!is.na(P) & P!='Unknown' & P!='']
+Y.None=Y.None[!is.na(P) & P!='Unknown' & P!='']
+P=P[!is.na(P) & P!='Unknown' & P!='']
 ```
 
 Make the models to compare

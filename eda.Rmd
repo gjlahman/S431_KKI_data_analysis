@@ -72,6 +72,10 @@ full_dat = subset(full_dat, !is.na(WISC_VERSION) & !is.na(SRS_VERSION))
 full_dat = subset(full_dat, ADHD_Subtype %in% c('Combined', 
                                                 'Hyperactive/Impulsive', 
                                                 'Inattentive', 'No dx'))
+
+full_dat$hasADHD = as.integer(full_dat$ADHD_Subtype != 'No dx')
+full_dat$hasAutism = as.integer(full_dat$PrimaryDiagnosis == 'Autism') 
+
 WISC4_full_dat = subset(full_dat, WISC_VERSION == 4)
 WISC5_full_dat = subset(full_dat, WISC_VERSION == 5)
 ```

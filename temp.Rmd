@@ -1,0 +1,53 @@
+---
+title: "temp"
+author: "Gabriel Lahman"
+date: "12/3/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+library(dplyr)
+library(tidyr)
+library(alr4)
+library(ggplot2)
+library(gridExtra)
+```
+
+```{r message=FALSE, warning=FALSE, size="tiny"}
+
+kki_demographics = read.csv('data/KKI_demographicInfo.csv')
+kki_handedness = read.csv('data/KKI_handedness.csv')
+kki_mABC = read.csv('data/KKI_movementAssessmentBatteryforChildren.csv')
+kki_SRS = read.csv('data/KKI_SocialResponsivenessScaleQuestionnaire.csv')
+kki_WISC = read.csv('data/KKI_WechslerIntelligenceScaleforChildren.csv')
+
+
+full_dat = full_join(kki_demographics, kki_mABC)
+full_dat = full_join(full_dat, kki_SRS)
+full_dat = full_join(full_dat, kki_WISC)
+full_dat = full_join(full_dat, kki_handedness)
+full_dat = subset(full_dat, visit == 1)
+full_dat = full_dat %>%
+  filter(!is.na(SecondaryDiagnosis))
+```
+
+```{r message=FALSE, warning=FALSE, size="tiny"}
+
+full_dat$PrimaryDiagnosis = as.factor(full_dat$PrimaryDiagnosis)
+full_dat$SecondaryDiagnosis = as.factor(full_dat$SecondaryDiagnosis)
+
+
+model1 = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + PrimaryDiagnosis, data = full_dat)
+summary(model1)
+model2 = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + PrimaryDiagnosis*SecondaryDiagnosis, data = full_dat)
+summary(model2)
+anova(model1, model2)
+```
+
+
+
+

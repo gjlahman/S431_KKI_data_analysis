@@ -25,14 +25,14 @@ full_dat = full_dat %>% drop_na(c('SecondaryDiagnosis',
                                   'CurrentlyTakingAtomoxetine', 
                                   'CurrentlyTakingClonidine', 
                                   'mABC_TotalStandardScore', 
-                                  'EdinburghHandedness_Integer'))
+                                  'EdinburghHandedness_Integer',
+                                  'GAI'))
 full_dat = subset(full_dat, visit == 1)
 full_dat = subset(full_dat, !is.na(WISC_VERSION) & !is.na(SRS_VERSION))
 full_dat = subset(full_dat, ADHD_Subtype %in% c('Combined', 
                                                 'Hyperactive/Impulsive', 
                                                 'Inattentive', 'No dx'))
 
-full_dat = filter(full_dat, !is.na(GAI))
 
 full_dat$hasADHD = as.integer(full_dat$ADHD_Subtype != 'No dx')
 full_dat$hasAutism = as.integer(full_dat$PrimaryDiagnosis == 'Autism')
@@ -68,11 +68,11 @@ summary(none_model_full)
 summary(none_model_red)
 anova(none_model_full,none_model_red)
 
-full_dat$none_predict = predict(none_model_full,newdata=full_dat)
+full_dat$none_predict = predict(none_model_full)
 
-ggplot(full_dat, aes(x=mABC_TotalStandardScore, y=SRS_TotalRawScore), col=as.factor(SRS_VERSION)) + 
+ggplot(data=full_dat, aes(x=mABC_TotalStandardScore,y=SRS_TotalRawScore,col=as.factor(SRS_VERSION))) + 
   geom_jitter(alpha=0.3,width=0.2,height=0.2) + 
-  geom_line(data=full_dat, aes(x=mABC_TotalStandardScore, none_predict), col='red')
+  geom_abline(slope=none_model_full$coefficients[2],intercept=none_model_full$coefficients[1])
 
 ggplot(full_dat, aes(x=none_predict, y=resid(none_model_full))) + geom_point()
 qqnorm(resid(none_model_full))

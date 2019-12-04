@@ -101,7 +101,7 @@ write.csv(wisc, 'data/KKI_GAI_from_WISC')
 ```
 
 ```{r}
-full_dat = full_join(full_dat, wisc)
+full_dat = left_join(full_dat, wisc)
 full_dat = subset(full_dat, select = -c(9, 23, 29:39))
 ```
 

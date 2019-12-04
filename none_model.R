@@ -4,6 +4,8 @@ library(alr4)
 library(ggplot2)
 library(gridExtra)
 
+setwd('/Users/rowlavel/Documents/Classes/Fall2019/LinearModels/S431_KKI_data_analysis')
+
 kki_demographics = read.csv('data/KKI_demographicInfo.csv')
 kki_handedness = read.csv('data/KKI_handedness.csv')
 kki_mABC = read.csv('data/KKI_movementAssessmentBatteryforChildren.csv')
@@ -30,6 +32,8 @@ full_dat = subset(full_dat, ADHD_Subtype %in% c('Combined',
                                                 'Hyperactive/Impulsive', 
                                                 'Inattentive', 'No dx'))
 
+full_dat = filter(full_dat, !is.na(GAI))
+
 full_dat$hasADHD = as.integer(full_dat$ADHD_Subtype != 'No dx')
 full_dat$hasAutism = as.integer(full_dat$PrimaryDiagnosis == 'Autism')
 
@@ -45,36 +49,30 @@ anova(total_model,comp_model)
 # take more complicated model (by components)
 
 
-# including mabc_totalscore (by comp), gai, version, gender, age
-full_dat_v1 = filter(full_dat,full_dat$SRS_VERSION==1,!is.na(full_dat$GAI),full_dat$PrimaryDiagnosis=='None')
-
-none_model_v1_full = lm(SRS_TotalRawScore~
+# including mabc_totalscore (by comp), gai, version (factor), gender, age
+none_model_full = lm(SRS_TotalRawScore~
                           mABC_ManualDexterity.Component.StandardScore+
                           mABC_AimingAndCatching.Component.StandardScore+
                           mABC_Balance.Component.StandardScore +
-                          GAI + Gender + mABC_AGE
-                          ,data=full_dat_v1)
+                          GAI + Gender + mABC_AGE + as.factor(SRS_VERSION)
+                          ,data=full_dat)
 
-none_model_v1_red = lm(SRS_TotalRawScore~
+none_model_red = lm(SRS_TotalRawScore~
                          mABC_ManualDexterity.Component.StandardScore+
                          mABC_AimingAndCatching.Component.StandardScore+
                          mABC_Balance.Component.StandardScore +
-                         Gender + mABC_AGE
-                         ,data=full_dat_v1)
+                         Gender + mABC_AGE + as.factor(SRS_VERSION)
+                         ,data=full_dat)
 
-summary(none_model_v1_full)
-summary(none_model_v1_red)
-anova(none_model_v1_full,none_model_v1_red)
+summary(none_model_full)
+summary(none_model_red)
+anova(none_model_full,none_model_red)
 
-full_dat_v1$none_predict = predict(none_model_v1_full,newdata=full_dat_v1)
+full_dat$none_predict = predict(none_model_full,newdata=full_dat)
 
-ggplot(full_dat_v1, aes(x=mABC_TotalStandardScore, y=SRS_TotalRawScore)) + 
-  geom_jitter(alpha=0.3,width=0.2,height=0.2) + geom_smooth() + 
-  geom_line(data=full_dat_v1, aes(x=mABC_TotalStandardScore, none_predict), col='red')
+ggplot(full_dat, aes(x=mABC_TotalStandardScore, y=SRS_TotalRawScore), col=as.factor(SRS_VERSION)) + 
+  geom_jitter(alpha=0.3,width=0.2,height=0.2) + 
+  geom_line(data=full_dat, aes(x=mABC_TotalStandardScore, none_predict), col='red')
 
-ggplot(full_dat_v1, aes(x=none_predict, y=resid(none_model_v1_full))) + geom_point()
-qqnorm(resid(none_model_v1_full))
-
-
-
-
+ggplot(full_dat, aes(x=none_predict, y=resid(none_model_full))) + geom_point()
+qqnorm(resid(none_model_full))

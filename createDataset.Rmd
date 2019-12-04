@@ -106,3 +106,4 @@ write.csv(wisc, 'data/KKI_GAI_from_WISC')
 ```{r}
 full_dat = full_join(full_dat, wisc)
 ```
+

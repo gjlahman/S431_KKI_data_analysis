@@ -33,6 +33,8 @@ full_dat = subset(full_dat, ADHD_Subtype %in% c('Combined',
                                                 'Hyperactive/Impulsive', 
                                                 'Inattentive', 'No dx'))
 
+full_dat = filter(full_dat, full_dat$PrimaryDiagnosis=='None')
+
 
 full_dat$hasADHD = as.integer(full_dat$ADHD_Subtype != 'No dx')
 full_dat$hasAutism = as.integer(full_dat$PrimaryDiagnosis == 'Autism')
@@ -40,16 +42,18 @@ full_dat$hasAutism = as.integer(full_dat$PrimaryDiagnosis == 'Autism')
 WISC4_full_dat = subset(full_dat, WISC_VERSION == 4)
 WISC5_full_dat = subset(full_dat, WISC_VERSION == 5)
 
-total_model = lm(SRS_TotalRawScore~mABC_TotalStandardScore, data=full_dat)
-comp_model = lm(SRS_TotalRawScore~mABC_ManualDexterity.Component.StandardScore+mABC_AimingAndCatching.Component.StandardScore+mABC_Balance.Component.StandardScore,data=full_dat)
+red_model = lm(SRS_TotalRawScore~mABC_TotalStandardScore, data=full_dat)
+full_model = lm(SRS_TotalRawScore~mABC_ManualDexterity.Component.StandardScore+mABC_AimingAndCatching.Component.StandardScore+mABC_Balance.Component.StandardScore,data=full_dat)
 
-summary(total_model)
-summary(comp_model)
+summary(red_model)
+summary(full_model)
 anova(total_model,comp_model)
 # take more complicated model (by components)
+## we see an increase in adj R^2 value, a highish F statistic, and a small P-value
+## reject the null and assume that the full model is better so we predict by components
 
 
-# including mabc_totalscore (by comp), gai, version (factor), gender, age
+# full model including GAI
 none_model_full = lm(SRS_TotalRawScore~
                           mABC_ManualDexterity.Component.StandardScore+
                           mABC_AimingAndCatching.Component.StandardScore+
@@ -57,6 +61,7 @@ none_model_full = lm(SRS_TotalRawScore~
                           GAI + Gender + mABC_AGE + as.factor(SRS_VERSION)
                           ,data=full_dat)
 
+# reduced model not including GAI
 none_model_red = lm(SRS_TotalRawScore~
                          mABC_ManualDexterity.Component.StandardScore+
                          mABC_AimingAndCatching.Component.StandardScore+
@@ -67,6 +72,10 @@ none_model_red = lm(SRS_TotalRawScore~
 summary(none_model_full)
 summary(none_model_red)
 anova(none_model_full,none_model_red)
+# we see a slight increase in adj R^2, and end up with a largeish F stat and small P value
+# so we reject the null and assume that the full model is better than the reduced model
+# so we decide to include GAI when analyzing 
+
 
 full_dat$none_predict = predict(none_model_full)
 

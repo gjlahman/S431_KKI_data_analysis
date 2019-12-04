@@ -1,0 +1,80 @@
+```{r message=FALSE, warning=FALSE, echo=FALSE}
+library(dplyr)
+library(tidyr)
+library(alr4)
+library(ggplot2)
+library(gridExtra)
+```
+
+```{r message=FALSE, warning=FALSE, echo=FALSE, size="tiny"}
+
+kki_demographics = read.csv('data/KKI_demographicInfo.csv')
+kki_handedness = read.csv('data/KKI_handedness.csv')
+kki_mABC = read.csv('data/KKI_movementAssessmentBatteryforChildren.csv')
+kki_SRS = read.csv('data/KKI_SocialResponsivenessScaleQuestionnaire.csv')
+kki_WISC = read.csv('data/KKI_WechslerIntelligenceScaleforChildren.csv')
+
+
+full_dat = full_join(kki_demographics, kki_mABC)
+full_dat = full_join(full_dat, kki_SRS)
+full_dat = full_join(full_dat, kki_WISC)
+full_dat = full_join(full_dat, kki_handedness)
+full_dat = subset(full_dat, visit == 1)
+```
+
+split by primary diagnosis 
+```{r}
+autism = full_dat[full_dat$PrimaryDiagnosis=='Autism',]
+ADHD = full_dat[full_dat$PrimaryDiagnosis=='ADHD',]
+None = full_dat[full_dat$PrimaryDiagnosis=='None',]
+```
+
+Clean the secondary diagnosis data  
+```{r}
+X.autism = autism$mABC_TotalStandardScore
+Y.autism = autism$SRS_TotalRawScore
+X.ADHD = ADHD$mABC_TotalStandardScore
+Y.ADHD = ADHD$SRS_TotalRawScore
+X.None = None$mABC_TotalStandardScore 
+Y.None = None$SRS_TotalRawScore
+
+P = as.factor(full_dat$SecondaryDiagnosis)
+X.autism=X.autism[!is.na(P) & P!='Unknown' & P!='']
+Y.autism=Y.autism[!is.na(P) & P!='Unknown' & P!='']
+X.ADHD=X.ADHD[!is.na(P) & P!='Unknown' & P!='']
+Y.ADHD=Y.ADHD[!is.na(P) & P!='Unknown' & P!='']
+X.None=X.None[!is.na(P) & P!='Unknown' & P!='']
+Y.None=Y.None[!is.na(P) & P!='Unknown' & P!='']
+P=P[!is.na(P) & P!='Unknown' & P!='']
+```
+
+Make the models to compare
+```{r}
+model1.autism = lm(Y.autism~X.autism)
+model2.autism = lm(Y.autism~X.autism+P)
+list(
+  p.val=anova(model1.autism,model2.autism)$`Pr(>F)`[2],
+  f.stat=anova(model1.autism,model2.autism)$F[2],
+  adj.r.squared=c(summary(model1.autism)$adj.r.squared,summary(model2.autism)$adj.r.squared)
+)
+
+model1.ADHD = lm(Y.autism~X.ADHD)
+model2.ADHD = lm(Y.autism~X.ADHD+P)
+list(
+  p.val=anova(model1.ADHD,model2.ADHD)$`Pr(>F)`[2],
+  f.stat=anova(model1.ADHD,model2.ADHD)$F[2],
+  adj.r.squared=c(summary(model1.ADHD)$adj.r.squared,summary(model2.ADHD)$adj.r.squared)
+)
+
+model1.None = lm(Y.autism~X.None)
+model2.None = lm(Y.autism~X.None+P)
+list(
+  p.val=anova(model1.None,model2.None)$`Pr(>F)`[2],
+  f.stat=anova(model1.None,model2.None)$F[2],
+  adj.r.squared=c(summary(model1.None)$adj.r.squared,summary(model2.None)$adj.r.squared)
+)
+```
+
+
+
+

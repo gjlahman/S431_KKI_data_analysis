@@ -16,6 +16,7 @@ library(tidyr)
 library(alr4)
 library(ggplot2)
 library(gridExtra)
+library(splines)
 ```
 
 ## Filtering Data

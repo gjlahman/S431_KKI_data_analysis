@@ -51,7 +51,7 @@ kki_handedness = read.csv('data/KKI_handedness.csv')
 kki_mABC = read.csv('data/KKI_movementAssessmentBatteryforChildren.csv')
 kki_SRS = read.csv('data/KKI_SocialResponsivenessScaleQuestionnaire.csv')
 kki_WISC = read.csv('data/KKI_WechslerIntelligenceScaleforChildren.csv')
-kki_gai = read.csv('data/KKI_GAI_from_WISC')
+kki_gai = read.csv('data/KKI_GAI_from_WISC.csv')
 
 
 full_dat = full_join(kki_demographics, kki_mABC)
@@ -76,12 +76,7 @@ full_dat = subset(full_dat, ADHD_Subtype %in% c('Combined',
                                                 'Inattentive', 'No dx'))
 
 full_dat$hasADHD = as.integer(full_dat$ADHD_Subtype != 'No dx')
-<<<<<<< HEAD
 full_dat$hasAutism = as.factor(full_dat$PrimaryDiagnosis == 'Autism') 
-
-=======
-full_dat$hasAutism = as.integer(full_dat$PrimaryDiagnosis == 'Autism')
->>>>>>> 9c5bb6af0da840f56fe74071f6317d00c5896c9a
 
 WISC4_full_dat = subset(full_dat, WISC_VERSION == 4)
 WISC5_full_dat = subset(full_dat, WISC_VERSION == 5)

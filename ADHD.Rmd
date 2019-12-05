@@ -10,9 +10,48 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{r}
+library(dplyr)
+library(tidyr)
+library(alr4)
+library(ggplot2)
+kki_demographics = read.csv('data/KKI_demographicInfo.csv')
+kki_mABC = read.csv('data/KKI_movementAssessmentBatteryforChildren.csv')
+kki_SRS = read.csv('data/KKI_SocialResponsivenessScaleQuestionnaire.csv')
+kki_WISC = read.csv('data/KKI_WechslerIntelligenceScaleforChildren.csv')
+kki_gai = read.csv('data/KKI_GAI_from_WISC.csv')
+
+full_dat = full_join(kki_demographics, kki_mABC)
+full_dat = full_join(full_dat, kki_SRS)
+full_dat = full_join(full_dat, kki_WISC)
+full_dat = full_join(full_dat, kki_gai)
+
+full_dat = subset(full_dat, visit == 1)
+full_dat = subset(full_dat, !is.na(WISC_VERSION) & !is.na(SRS_VERSION))
+
+
+full_dat = subset(full_dat, ADHD_Subtype %in% c('Combined', 
+                                                'Hyperactive/Impulsive', 
+                                                'Inattentive', 'No dx'))
 full_dat_ADHD = subset(full_dat, PrimaryDiagnosis == 'ADHD')
 full_dat_ADHD = subset(full_dat_ADHD, ADHD_Subtype %in% c('Combined', 'Inattentive'))
 row.names(full_dat_ADHD) = 1:nrow(full_dat_ADHD)
+
+vars_of_interest = c('ID',
+                     'Gender',
+                     'SecondaryDiagnosis',
+                     'ADHD_Subtype',
+                     'mABC_AGE',
+                     'mABC_TotalStandardScore',
+                     'mABC_ManualDexterity.Component.StandardScore',
+                     'mABC_AimingAndCatching.Component.StandardScore',
+                     'mABC_Balance.Component.StandardScore',
+                     'SRS_AGE',
+                     'SRS_VERSION',
+                     'SRS_TotalRawScore',
+                     'GAI')
+full_dat_ADHD = full_dat_ADHD %>% select(vars_of_interest)
+full_dat_ADHD = full_dat_ADHD[complete.cases(full_dat_ADHD),]
+full_dat_ADHD$SRS_VERSION = as.factor(full_dat_ADHD$SRS_VERSION)
 ```
 
 ```{r}
@@ -31,7 +70,12 @@ ggplot(full_dat_ADHD, aes(x=mABC_AGE)) + geom_histogram()
 ```
 
 ```{r}
-ggplot(full_dat_ADHD, aes(full_dat_ADHD$mABC_TotalStandardScore, full_dat_ADHD$SRS_TotalRawScore)) + geom_point() + geom_jitter(alpha = 1)
+ggplot(full_dat_ADHD, aes(x =mABC_TotalStandardScore, y = SRS_TotalRawScore, color = SRS_VERSION)) + geom_point() +
+  geom_jitter(alpha = 1) + 
+  geom_smooth(se = FALSE) +
+  xlab('mABC Total Score') +
+  ylab('SRS Total Score') +
+  ggtitle('Marginal Plot, mABC Total Score vs. SRS Total Score')
 ```
 
 ```{r}
@@ -66,35 +110,35 @@ anova(lm_GAI, lm_mABC_total)
 ```{r}
 lm_mABC_sd_sub = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION + SecondaryDiagnosis + ADHD_Subtype, full_dat_ADHD)
 summary(lm_mABC_sd_sub)
-plot(fitted(lm_mABC_sd_sub), stdres(lm_mABC_sd_sub))
-qqnorm(stdres(lm_mABC_sd_sub))
-qqline(stdres(lm_mABC_sd_sub))
+plot(fitted(lm_mABC_sd_sub), rstandard(lm_mABC_sd_sub))
+qqnorm(rstandard(lm_mABC_sd_sub))
+qqline(rstandard(lm_mABC_sd_sub))
 ```
 
 ```{r}
-plot(influence(lm_mABC_sd_sub)$hat, stdres(lm_mABC_sd_sub))
+plot(influence(lm_mABC_sd_sub)$hat, rstandard(lm_mABC_sd_sub))
 ```
 
 ```{r}
-order(stdres(lm_mABC_sd_sub), decreasing = TRUE)
-stdres(lm_mABC_sd_sub)[c(140, 134, 169)]
+order(rstandard(lm_mABC_sd_sub), decreasing = TRUE)
+rstandard(lm_mABC_sd_sub)[c(140, 134, 169)]
 full_dat_ADHD_filtered = full_dat_ADHD[-c(140, 134, 169),]
 ```
 
 ```{r}
 lm_mABC_sd_sub_filtered = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION + SecondaryDiagnosis + ADHD_Subtype, full_dat_ADHD_filtered)
 summary(lm_mABC_sd_sub_filtered)
-plot(fitted(lm_mABC_sd_sub_filtered), stdres(lm_mABC_sd_sub_filtered))
-qqnorm(stdres(lm_mABC_sd_sub_filtered))
-qqline(stdres(lm_mABC_sd_sub_filtered))
+plot(fitted(lm_mABC_sd_sub_filtered), rstandard(lm_mABC_sd_sub_filtered))
+qqnorm(rstandard(lm_mABC_sd_sub_filtered))
+qqline(rstandard(lm_mABC_sd_sub_filtered))
 ```
 
 ```{r}
 lm_mABC_sd_sub_interaction_filtered = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION + SecondaryDiagnosis * ADHD_Subtype, full_dat_ADHD_filtered)
 summary(lm_mABC_sd_sub_interaction_filtered)
-plot(fitted(lm_mABC_sd_sub_interaction_filtered), stdres(lm_mABC_sd_sub_interaction_filtered))
-qqnorm(stdres(lm_mABC_sd_sub_interaction_filtered))
-qqline(stdres(lm_mABC_sd_sub_interaction_filtered))
+plot(fitted(lm_mABC_sd_sub_interaction_filtered), rstandard(lm_mABC_sd_sub_interaction_filtered))
+qqnorm(rstandard(lm_mABC_sd_sub_interaction_filtered))
+qqline(rstandard(lm_mABC_sd_sub_interaction_filtered))
 ```
 
 ```{r}
@@ -110,25 +154,25 @@ summary(lm_mABCaac_sd_sub_interaction_filtered)
 ```{r}
 lm_mABCbal_sd_sub_interaction_filtered = lm(SRS_TotalRawScore ~ mABC_Balance.Component.StandardScore + SRS_VERSION + SecondaryDiagnosis * ADHD_Subtype, full_dat_ADHD_filtered)
 summary(lm_mABCbal_sd_sub_interaction_filtered)
-plot(fitted(lm_mABCbal_sd_sub_interaction_filtered), stdres(lm_mABCbal_sd_sub_interaction_filtered))
-qqnorm(stdres(lm_mABCbal_sd_sub_interaction_filtered))
-qqline(stdres(lm_mABCbal_sd_sub_interaction_filtered))
+plot(fitted(lm_mABCbal_sd_sub_interaction_filtered), rstandard(lm_mABCbal_sd_sub_interaction_filtered))
+qqnorm(rstandard(lm_mABCbal_sd_sub_interaction_filtered))
+qqline(rstandard(lm_mABCbal_sd_sub_interaction_filtered))
 ```
 
 ```{r}
-lm_mABCbalsquared_sd_sub_interaction_filtered = lm(SRS_TotalRawScore ~ I(mABC_Balance.Component.StandardScore^2) + SRS_VERSION + SecondaryDiagnosis * ADHD_Subtype, full_dat_ADHD_filtered)
-summary(lm_mABCbalsquared_sd_sub_interaction_filtered)
-plot(fitted(lm_mABCbalsquared_sd_sub_interaction_filtered), stdres(lm_mABCbalsquared_sd_sub_interaction_filtered))
-qqnorm(stdres(lm_mABCbalsquared_sd_sub_interaction_filtered))
-qqline(stdres(lm_mABCbalsquared_sd_sub_interaction_filtered))
+# lm_mABCbalsquared_sd_sub_interaction_filtered = lm(SRS_TotalRawScore ~ I(mABC_Balance.Component.StandardScore^2) + SRS_VERSION + SecondaryDiagnosis * ADHD_Subtype, full_dat_ADHD_filtered)
+# summary(lm_mABCbalsquared_sd_sub_interaction_filtered)
+# plot(fitted(lm_mABCbalsquared_sd_sub_interaction_filtered), rstandard(lm_mABCbalsquared_sd_sub_interaction_filtered))
+# qqnorm(rstandard(lm_mABCbalsquared_sd_sub_interaction_filtered))
+# qqline(rstandard(lm_mABCbalsquared_sd_sub_interaction_filtered))
 ```
 
 ```{r}
 lm_mABCbalcubed_sd_sub_interaction_filtered = lm(SRS_TotalRawScore ~ I(mABC_Balance.Component.StandardScore^3) + SRS_VERSION + SecondaryDiagnosis * ADHD_Subtype, full_dat_ADHD_filtered)
 summary(lm_mABCbalcubed_sd_sub_interaction_filtered)
-plot(fitted(lm_mABCbalcubed_sd_sub_interaction_filtered), stdres(lm_mABCbalcubed_sd_sub_interaction_filtered))
-qqnorm(stdres(lm_mABCbalcubed_sd_sub_interaction_filtered))
-qqline(stdres(lm_mABCbalcubed_sd_sub_interaction_filtered))
+plot(fitted(lm_mABCbalcubed_sd_sub_interaction_filtered), rstandard(lm_mABCbalcubed_sd_sub_interaction_filtered))
+qqnorm(rstandard(lm_mABCbalcubed_sd_sub_interaction_filtered))
+qqline(rstandard(lm_mABCbalcubed_sd_sub_interaction_filtered))
 ```
 
 ```{r}

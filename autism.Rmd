@@ -66,6 +66,8 @@ full_dat_autism = full_dat_autism %>% select(vars_of_interest)
 full_dat_autism$SRS_VERSION = as.factor(full_dat_autism$SRS_VERSION)
 full_dat_autism = full_dat_autism[complete.cases(full_dat_autism),]
 
+full_dat_autism$no_dx = as.factor(full_dat_autism$ADHD_Subtype == 'No dx')
+
 ```
 
 ## SRS Version
@@ -150,7 +152,7 @@ Components do not add anything
 ## ADHD Subtype as Interaction
 
 ```{r warning=FALSE, message=FALSE}
-lm_adhd = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore*ADHD_Subtype + SRS_VERSION, data = full_dat_autism)
+lm_adhd = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore*no_dx + SRS_VERSION, data = full_dat_autism)
 summary(lm_adhd)
 anova(lm_version, lm_adhd)
 ```
@@ -169,10 +171,7 @@ ggplot(data = full_dat_autism, aes(x = mABC_TotalStandardScore, y = SRS_TotalRaw
   facet_grid(. ~ SRS_VERSION) 
 ```
 
-```{r warning=FALSE, message=FALSE}
-lm_gender_age = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore*ADHD_Subtype + SRS_VERSION + Gender + SRS_AGE, data = full_dat_autism)
-summary(lm_gender_age)
-anova(lm_adhd, lm_gender_age)
-```
+$y_i = \beta_0 + \beta_1 d_{1i} + \beta_2 X_1 + \beta_3 X_2 $
+
 
 

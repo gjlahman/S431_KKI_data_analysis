@@ -53,6 +53,7 @@ full_model = lm(SRS_TotalRawScore~
 summary(red_model)
 summary(full_model)
 anova(red_model,full_model)
+plot(density(full_dat$mABC_TotalStandardScore))
 ```
 # take more complicated model (by components)
 ## we see an increase in adj R^2 value, a highish F statistic, and a small P-value

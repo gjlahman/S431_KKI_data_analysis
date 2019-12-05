@@ -1,0 +1,178 @@
+---
+title: "Autism Model"
+author: "Gabriel Lahman"
+date: "12/5/2019"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+library(dplyr)
+library(tidyr)
+library(alr4)
+library(ggplot2)
+```
+
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+kki_demographics = read.csv('data/KKI_demographicInfo.csv')
+kki_mABC = read.csv('data/KKI_movementAssessmentBatteryforChildren.csv')
+kki_SRS = read.csv('data/KKI_SocialResponsivenessScaleQuestionnaire.csv')
+kki_WISC = read.csv('data/KKI_WechslerIntelligenceScaleforChildren.csv')
+kki_gai = read.csv('data/KKI_GAI_from_WISC.csv')
+
+full_dat = full_join(kki_demographics, kki_mABC)
+full_dat = full_join(full_dat, kki_SRS)
+full_dat = full_join(full_dat, kki_WISC)
+full_dat = full_join(full_dat, kki_gai)
+
+full_dat = subset(full_dat, visit == 1)
+full_dat = subset(full_dat, !is.na(WISC_VERSION) & !is.na(SRS_VERSION))
+
+
+full_dat = subset(full_dat, ADHD_Subtype %in% c('Combined', 
+                                                'Hyperactive/Impulsive', 
+                                                'Inattentive', 'No dx'))
+
+full_dat$hasADHD = as.integer(full_dat$ADHD_Subtype != 'No dx')
+full_dat$hasAutism = as.factor(full_dat$PrimaryDiagnosis == 'Autism') 
+
+full_dat_autism = full_dat %>% filter(hasAutism == TRUE)
+
+vars_of_interest = c('ID',
+                     'Gender',
+                     'SecondaryDiagnosis',
+                     'ADHD_Subtype',
+                     'mABC_AGE',
+                     'mABC_TotalStandardScore',
+                     'mABC_ManualDexterity.Component.StandardScore',
+                     'mABC_AimingAndCatching.Component.StandardScore',
+                     'mABC_Balance.Component.StandardScore',
+                     'SRS_AGE',
+                     'SRS_VERSION',
+                     'SRS_TotalRawScore',
+                     'GAI',
+                     'hasADHD',
+                     'hasAutism')
+
+full_dat_autism = full_dat_autism %>% select(vars_of_interest)
+full_dat_autism$SRS_VERSION = as.factor(full_dat_autism$SRS_VERSION)
+full_dat_autism = full_dat_autism[complete.cases(full_dat_autism),]
+
+```
+
+## SRS Version
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+ggplot(full_dat_autism, aes(x = mABC_TotalStandardScore, y = SRS_TotalRawScore, color = SRS_VERSION)) +
+  geom_jitter() + 
+  geom_smooth() + 
+  xlab('mABC Total Score') +
+  ylab('SRS Total Score') +
+  ggtitle('Marginal Plot, mABC Total Score vs. SRS Total Score')
+
+lm_mABCTot = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore, data = full_dat_autism)
+lm_version = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat_autism)
+```
+
+
+```{r warning=FALSE, message=FALSE}
+summary(lm_mABCTot)
+summary(lm_version)
+anova(lm_mABCTot, lm_version)
+```
+
+High F value and Low P-value means we should include SRS Version.
+
+
+## GAI
+
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+resids = residuals(lm_version)
+GAI_regout = residuals(lm(GAI ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat_autism))
+
+qplot(x = GAI_regout, y = resids) + 
+  geom_smooth() +
+  xlab('GAI (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, GAI vs. SRS Total Score')
+```
+
+
+Added variable plot shows no relationship. This answers part of our research question. GAI is not useful in predciting SRS Total Raw Score for subjects with autism.
+
+
+## Component Scores
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+man_dext_regout_tss = residuals(lm(mABC_ManualDexterity.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat_autism))
+
+aim_catch_regout_tss = residuals(lm(mABC_AimingAndCatching.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat_autism))
+
+balance_regout_tss = residuals(lm(mABC_Balance.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat_autism))
+
+qplot(x = man_dext_regout_tss, resids) + 
+  geom_jitter() +
+  geom_smooth() +
+  xlab('Manual Dexterity (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, Manual Dexterity vs. SRS Total Score')
+  
+
+qplot(x = aim_catch_regout_tss, resids) + 
+  geom_jitter() +
+  geom_smooth() +
+  xlab('Aiming and Catching (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, Aiming and Catching vs. SRS Total Score')
+
+qplot(x = balance_regout_tss, resids) + 
+  geom_jitter() +
+  geom_smooth() +
+  xlab('Balance (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, Balance vs. SRS Total Score')
+
+
+```
+
+
+Components do not add anything
+
+## ADHD Subtype as Interaction
+
+```{r warning=FALSE, message=FALSE}
+lm_adhd = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore*ADHD_Subtype + SRS_VERSION, data = full_dat_autism)
+summary(lm_adhd)
+anova(lm_version, lm_adhd)
+```
+
+```{r warning=FALSE, message=FALSE, echo=FALSE}
+# qplot(x = fitted.values(lm_adhd), y = residuals(lm_adhd), color = as.factor(full_dat_autism$SRS_VERSION)) +
+#   geom_smooth(method = 'lm', se = FALSE) + 
+#   geom_jitter() +
+#   xlab("Fitted Values") +
+#   ylab("Residuals") +
+#   ggtitle('Fitted vs. Residuals, Model w/ ADHD')
+
+ggplot(data = full_dat_autism, aes(x = mABC_TotalStandardScore, y = SRS_TotalRawScore, color = ADHD_Subtype)) +
+  geom_jitter() + 
+  geom_smooth(se=FALSE, method = 'lm') +
+  facet_grid(. ~ SRS_VERSION) 
+```
+
+```{r warning=FALSE, message=FALSE}
+lm_gender_age = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore*ADHD_Subtype + SRS_VERSION + Gender + SRS_AGE, data = full_dat_autism)
+summary(lm_gender_age)
+anova(lm_adhd, lm_gender_age)
+```
+
+

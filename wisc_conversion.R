@@ -26,6 +26,7 @@ for (i in 1:dim(wisc)[1]) {
   }
 }
 
+
 wisc = wisc %>%
   select(-c(wisc4_vars, wisc5_vars)) %>%
   filter(!is.na(scaled_sum))
@@ -45,5 +46,5 @@ wisc = wisc %>%
   rowwise() %>%
   mutate(GAI = sum_to_gai(WISC_VERSION, scaled_sum))
 
-write.csv(wisc, 'data/KKI_GAI_from_WISC')
+write.csv(wisc, 'data/KKI_GAI_from_WISC.csv')
 

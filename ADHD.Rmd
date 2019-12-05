@@ -1,0 +1,97 @@
+---
+title: "ADHD"
+author: "Matthew Zelenin"
+date: "12/4/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+full_dat_ADHD = subset(full_dat, PrimaryDiagnosis == 'ADHD')
+full_dat_ADHD = subset(full_dat_ADHD, ADHD_Subtype %in% c('Combined', 'Inattentive'))
+row.names(full_dat_ADHD) = 1:nrow(full_dat_ADHD)
+```
+
+```{r}
+ggplot(full_dat_ADHD, aes(x=SRS_TotalRawScore)) + geom_histogram()
+ggplot(full_dat_ADHD, aes(x=mABC_TotalStandardScore)) + geom_histogram()
+ggplot(full_dat_ADHD, aes(x=mABC_AGE)) + geom_histogram()
+```
+
+```{r}
+ggplot(full_dat_ADHD, aes(full_dat_ADHD$mABC_TotalStandardScore, full_dat_ADHD$SRS_TotalRawScore)) + geom_point() + geom_jitter(alpha = 1)
+```
+
+```{r}
+lm_mABC_total = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION, full_dat_ADHD)
+lm_mABC_components = lm(SRS_TotalRawScore ~ mABC_ManualDexterity.Component.StandardScore + mABC_AimingAndCatching.Component.StandardScore + mABC_Balance.Component.StandardScore + SRS_VERSION, full_dat_ADHD)
+anova(lm_mABC_components, lm_mABC_total)
+```
+
+```{r}
+lm_gender = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION + Gender, full_dat_ADHD)
+lm_age = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION + mABC_AGE, full_dat_ADHD)
+lm_sd = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION + SecondaryDiagnosis, full_dat_ADHD)
+lm_subtype = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION + ADHD_Subtype, full_dat_ADHD)
+lm_GAI = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION + GAI, full_dat_ADHD)
+
+summary(lm_mABC_total)
+summary(lm_gender)
+summary(lm_age)
+summary(lm_sd)
+summary(lm_subtype)
+summary(lm_GAI)
+```
+
+```{r}
+anova(lm_gender, lm_mABC_total)
+anova(lm_age, lm_mABC_total)
+anova(lm_sd, lm_mABC_total)
+anova(lm_subtype, lm_mABC_total)
+anova(lm_GAI, lm_mABC_total)
+```
+
+```{r}
+lm_mABC_sd_sub = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION + SecondaryDiagnosis + ADHD_Subtype, full_dat_ADHD)
+summary(lm_mABC_sd_sub)
+plot(fitted(lm_mABC_sd_sub), stdres(lm_mABC_sd_sub))
+qqnorm(stdres(lm_mABC_sd_sub))
+qqline(stdres(lm_mABC_sd_sub))
+```
+
+```{r}
+lm_mABCsquared_sd_sub = lm(SRS_TotalRawScore ~ I(mABC_TotalStandardScore^2) + SRS_VERSION + SecondaryDiagnosis + ADHD_Subtype, full_dat_ADHD)
+summary(lm_mABCsquared_sd_sub)
+plot(fitted(lm_mABCsquared_sd_sub), stdres(lm_mABCsquared_sd_sub))
+qqnorm(stdres(lm_mABCsquared_sd_sub))
+qqline(stdres(lm_mABCsquared_sd_sub))
+```
+
+```{r}
+lm_mABCcubed_sd_sub = lm(SRS_TotalRawScore ~ I(mABC_TotalStandardScore^3) + SRS_VERSION + SecondaryDiagnosis + ADHD_Subtype, full_dat_ADHD)
+summary(lm_mABCcubed_sd_sub)
+plot(fitted(lm_mABCcubed_sd_sub), stdres(lm_mABCcubed_sd_sub))
+qqnorm(stdres(lm_mABCcubed_sd_sub))
+qqline(stdres(lm_mABCcubed_sd_sub))
+```
+
+```{r}
+plot(influence(lm_mABC_sd_sub)$hat, stdres(lm_mABC_sd_sub))
+```
+
+```{r}
+order(stdres(lm_mABC_sd_sub), decreasing = TRUE)
+stdres(lm_mABC_sd_sub)[c(140, 134, 169)]
+full_dat_ADHD_filtered = full_dat_ADHD[-c(140, 134, 169),]
+```
+
+```{r}
+lm_mABC_sd_sub_filtered = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION + SecondaryDiagnosis + ADHD_Subtype, full_dat_ADHD_filtered)
+summary(lm_mABC_sd_sub_filtered)
+plot(fitted(lm_mABC_sd_sub_filtered), stdres(lm_mABC_sd_sub_filtered))
+qqnorm(stdres(lm_mABC_sd_sub_filtered))
+qqline(stdres(lm_mABC_sd_sub_filtered))
+```

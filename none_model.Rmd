@@ -33,6 +33,8 @@ full_dat = subset(full_dat, !is.na(WISC_VERSION) & !is.na(SRS_VERSION))
 full_dat = subset(full_dat, ADHD_Subtype %in% c('Combined', 
                                                 'Hyperactive/Impulsive', 
                                                 'Inattentive', 'No dx'))
+nrow(full_dat)
+
 
 full_dat = filter(full_dat, full_dat$PrimaryDiagnosis=='None')
 
@@ -77,9 +79,13 @@ none_model_red = lm(SRS_TotalRawScore~
                          Gender + mABC_AGE + as.factor(SRS_VERSION)
                          ,data=full_dat)
 
+FINAL_MODEL = lm(SRS_TotalRawScore~mABC_ManualDexterity.Component.StandardScore+GAI + as.factor(SRS_VERSION),data=full_dat)
+
 summary(none_model_full)
 summary(none_model_red)
+summary(FINAL_MODEL)
 anova(none_model_full,none_model_red)
+anova(FINAL_MODEL,none_model_red)
 ```
 # we see a slight increase in adj R^2, and end up with a largeish F stat and small P value
 # so we reject the null and assume that the full model is better than the reduced model
@@ -115,22 +121,29 @@ man_dext_regout_tss = residuals(lm(mABC_ManualDexterity.Component.StandardScore 
 qplot(x = man_dext_regout_tss, y = resid) + geom_smooth(method='lm') + 
   xlab('Manual Dexterity (prior model regressed out)') +
   ylab('SRS Total Score (prior model residuals)') +
-  ggtitle('Added Variable Plot, GAI vs. SRS Total Score')
+  ggtitle('Added Variable Plot, Manual Dexterity vs. SRS Total Score')
 
 aim_catch_regout_tss = residuals(lm(mABC_AimingAndCatching.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
 qplot(x = man_dext_regout_tss, y = resid) + geom_smooth(method='lm') + 
   xlab('Aiming and Catching (prior model regressed out)') +
   ylab('SRS Total Score (prior model residuals)') +
-  ggtitle('Added Variable Plot, GAI vs. SRS Total Score')
+  ggtitle('Added Variable Plot, Aiming and Catching vs. SRS Total Score')
 
 balance_regout_tss = residuals(lm(mABC_Balance.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
 qplot(x = man_dext_regout_tss, y = resid) + geom_smooth(method='lm') + 
   xlab('Balance (prior model regressed out)') +
   ylab('SRS Total Score (prior model residuals)') +
-  ggtitle('Added Variable Plot, GAI vs. SRS Total Score')
+  ggtitle('Added Variable Plot, Balance vs. SRS Total Score')
 ```
 
+$$
+y_i = \beta_0 + \beta_1 \gamma + \beta_2 x_2 + \beta_3 x_3 \ \\
 
+\gamma = \begin{cases} 
+      1 & version = 2 \\
+      0 & version = 1
+   \end{cases}
+$$
 
 
 

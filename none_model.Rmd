@@ -79,31 +79,38 @@ none_model_red = lm(SRS_TotalRawScore~
                          Gender + mABC_AGE + as.factor(SRS_VERSION)
                          ,data=full_dat)
 
-FINAL_MODEL = lm(SRS_TotalRawScore~mABC_ManualDexterity.Component.StandardScore+GAI + as.factor(SRS_VERSION),data=full_dat)
+final_model = lm(SRS_TotalRawScore~mABC_ManualDexterity.Component.StandardScore+GAI+as.factor(SRS_VERSION),data=full_dat)
 
 summary(none_model_full)
-summary(none_model_red)
-summary(FINAL_MODEL)
-anova(none_model_full,none_model_red)
-anova(FINAL_MODEL,none_model_red)
+#summary(none_model_red)
+summary(final_model)
+#anova(none_model_full,none_model_red)
+#anova(FINAL_MODEL,none_model_red)
+
 ```
 # we see a slight increase in adj R^2, and end up with a largeish F stat and small P value
 # so we reject the null and assume that the full model is better than the reduced model
 # so we decide to include GAI when analyzing 
+```{r}
+anova(final_model,none_model_full)
+```
 
 ```{r}
-full_dat$none_predict = predict(none_model_full)
+final_model$coefficients
+```
 
-ggplot(data=full_dat, aes(x=mABC_TotalStandardScore,y=SRS_TotalRawScore,col=as.factor(SRS_VERSION))) + 
+```{r}
+full_dat$none_predict = predict(full_model)
+
+ggplot(data=full_dat, aes(x=mABC_ManualDexterity.Component.StandardScore,y=SRS_TotalRawScore,col=as.factor(SRS_VERSION))) + 
   geom_jitter(alpha=0.3,width=0.2,height=0.2) + 
-  geom_abline(slope=none_model_full$coefficients[2],
-              intercept=none_model_full$coefficients[1], col='red') +
-  geom_abline(slope=none_model_full$coefficients[2],
-              intercept=none_model_full$coefficients[1]+none_model_full$coefficients[8], col='blue') + 
+  geom_abline(slope=final_model$coefficients[2]+final_model$coefficients[3],
+              intercept=final_model$coefficients[1], col='red') +
+  geom_abline(slope=final_model$coefficients[2]+final_model$coefficients[3],
+              intercept=final_model$coefficients[1]+final_model$coefficients[4], col='blue') + 
   xlab('mABC Total Score') +
   ylab('SRS Total Score') +
-  ggtitle('Marginal Plot, mABC Total Score vs. SRS Total Score')
-
+  ggtitle('Marginal Plot, mABC ManualDexterity Component Standard Score vs. SRS Total Score')
 
 ggplot(full_dat, aes(x=none_predict, y=resid(none_model_full), col=as.factor(SRS_VERSION))) + geom_point()
 qqnorm(resid(none_model_full))
@@ -145,6 +152,17 @@ y_i = \beta_0 + \beta_1 \gamma + \beta_2 x_2 + \beta_3 x_3 \ \\
    \end{cases}
 $$
 
-
+$$
+y_i = \beta_0 + d_1\alpha_1 + \beta_1 x_1 + \gamma d_1 x_1 \\
+d_1 = \begin{cases} 
+      1 & version = 2 \\
+      0 & version = 1
+   \end{cases}
+\\
+d_2 = \begin{cases} 
+      1 & SecondaryDiagnosis = yes \\
+      0 &  SecondaryDiagnosis = no
+   \end{cases}
+$$
 
 

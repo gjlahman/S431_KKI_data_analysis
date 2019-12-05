@@ -11,7 +11,7 @@ kki_handedness = read.csv('data/KKI_handedness.csv')
 kki_mABC = read.csv('data/KKI_movementAssessmentBatteryforChildren.csv')
 kki_SRS = read.csv('data/KKI_SocialResponsivenessScaleQuestionnaire.csv')
 kki_WISC = read.csv('data/KKI_WechslerIntelligenceScaleforChildren.csv')
-kki_gai = read.csv('data/KKI_GAI_from_WISC')
+kki_gai = read.csv('data/KKI_GAI_from_WISC.csv')
 
 
 full_dat = full_join(kki_demographics, kki_mABC)
@@ -35,7 +35,6 @@ full_dat = subset(full_dat, ADHD_Subtype %in% c('Combined',
 
 full_dat = filter(full_dat, full_dat$PrimaryDiagnosis=='None')
 
-
 full_dat$hasADHD = as.integer(full_dat$ADHD_Subtype != 'No dx')
 full_dat$hasAutism = as.integer(full_dat$PrimaryDiagnosis == 'Autism')
 
@@ -43,11 +42,14 @@ WISC4_full_dat = subset(full_dat, WISC_VERSION == 4)
 WISC5_full_dat = subset(full_dat, WISC_VERSION == 5)
 
 red_model = lm(SRS_TotalRawScore~mABC_TotalStandardScore, data=full_dat)
-full_model = lm(SRS_TotalRawScore~mABC_ManualDexterity.Component.StandardScore+mABC_AimingAndCatching.Component.StandardScore+mABC_Balance.Component.StandardScore,data=full_dat)
+full_model = lm(SRS_TotalRawScore~
+                  mABC_ManualDexterity.Component.StandardScore+
+                  mABC_AimingAndCatching.Component.StandardScore+
+                  mABC_Balance.Component.StandardScore,data=full_dat)
 
 summary(red_model)
 summary(full_model)
-anova(total_model,comp_model)
+anova(red_model,full_model)
 # take more complicated model (by components)
 ## we see an increase in adj R^2 value, a highish F statistic, and a small P-value
 ## reject the null and assume that the full model is better so we predict by components
@@ -81,7 +83,22 @@ full_dat$none_predict = predict(none_model_full)
 
 ggplot(data=full_dat, aes(x=mABC_TotalStandardScore,y=SRS_TotalRawScore,col=as.factor(SRS_VERSION))) + 
   geom_jitter(alpha=0.3,width=0.2,height=0.2) + 
-  geom_abline(slope=none_model_full$coefficients[2],intercept=none_model_full$coefficients[1])
+  geom_abline(slope=none_model_full$coefficients[2],
+              intercept=none_model_full$coefficients[1], col='red') +
+  geom_abline(slope=none_model_full$coefficients[2],
+              intercept=none_model_full$coefficients[1]+none_model_full$coefficients[8], col='blue')
 
-ggplot(full_dat, aes(x=none_predict, y=resid(none_model_full))) + geom_point()
+ggplot(full_dat, aes(x=none_predict, y=resid(none_model_full), col=as.factor(SRS_VERSION))) + geom_point()
 qqnorm(resid(none_model_full))
+
+
+resid = residuals(none_model_red)
+GAI_regout = residuals(lm(GAI~ mABC_TotalStandardScore + SRS_VERSION, data=full_dat))
+qplot(x = GAI_regout, y = resid) + geom_smooth(method='lm')
+
+
+
+
+
+
+

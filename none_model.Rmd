@@ -1,0 +1,204 @@
+```{r}
+library(dplyr)
+library(tidyr)
+library(alr4)
+library(ggplot2)
+library(gridExtra)
+library(sjPlot)
+
+setwd('/Users/rowlavel/Documents/Classes/Fall2019/LinearModels/S431_KKI_data_analysis')
+
+kki_demographics = read.csv('data/KKI_demographicInfo.csv')
+kki_handedness = read.csv('data/KKI_handedness.csv')
+kki_mABC = read.csv('data/KKI_movementAssessmentBatteryforChildren.csv')
+kki_SRS = read.csv('data/KKI_SocialResponsivenessScaleQuestionnaire.csv')
+kki_WISC = read.csv('data/KKI_WechslerIntelligenceScaleforChildren.csv')
+kki_gai = read.csv('data/KKI_GAI_from_WISC.csv')
+
+
+full_dat = full_join(kki_demographics, kki_mABC)
+full_dat = full_join(full_dat, kki_SRS)
+full_dat = full_join(full_dat, kki_WISC)
+full_dat = full_join(full_dat, kki_handedness)
+full_dat = full_join(full_dat, kki_gai)
+
+full_dat = full_dat %>% drop_na(c('SecondaryDiagnosis', 
+                                  'CurrentlyNotTakingMeds', 
+                                  'CurrentlyTakingAtomoxetine', 
+                                  'CurrentlyTakingClonidine', 
+                                  'mABC_TotalStandardScore', 
+                                  'EdinburghHandedness_Integer',
+                                  'GAI'))
+full_dat = subset(full_dat, visit == 1)
+full_dat = subset(full_dat, !is.na(WISC_VERSION) & !is.na(SRS_VERSION))
+full_dat = subset(full_dat, ADHD_Subtype %in% c('Combined', 
+                                                'Hyperactive/Impulsive', 
+                                                'Inattentive', 'No dx'))
+nrow(full_dat)
+
+
+full_dat = filter(full_dat, full_dat$PrimaryDiagnosis=='None')
+which(full_dat$SecondaryDiagnosis=='Yes')
+
+full_dat$hasADHD = as.integer(full_dat$ADHD_Subtype != 'No dx')
+full_dat$hasAutism = as.integer(full_dat$PrimaryDiagnosis == 'Autism')
+full_dat$No_dx = as.factor(full_dat$ADHD_Subtype == 'No dx')
+full_dat$SRS_VERSION = as.factor(full_dat$SRS_VERSION)
+full_dat$SecondaryDiagnosis = as.factor(full_dat$SecondaryDiagnosis)
+
+WISC4_full_dat = subset(full_dat, WISC_VERSION == 4)
+WISC5_full_dat = subset(full_dat, WISC_VERSION == 5)
+```
+
+```{r}
+red_model = lm(SRS_TotalRawScore~mABC_TotalStandardScore+SRS_VERSION, data=full_dat)
+full_model = lm(SRS_TotalRawScore~
+                  mABC_ManualDexterity.Component.StandardScore+
+                  mABC_AimingAndCatching.Component.StandardScore+
+                  mABC_Balance.Component.StandardScore+
+                  SRS_VERSION,data=full_dat)
+```
+
+```{r}
+summary(red_model)
+summary(full_model)
+```
+
+```{r}
+anova(red_model,full_model)
+plot(density(full_dat$mABC_TotalStandardScore))
+```
+dont reject the null take the reduced model
+
+```{r}
+# full model includinfg GAI
+none_model_full = lm(SRS_TotalRawScore~mABC_TotalStandardScore+GAI+SecondaryDiagnosis+SRS_VERSION,data=full_dat)
+
+# reduced model not including GAI
+none_model_red = lm(SRS_TotalRawScore~mABC_TotalStandardScore+SRS_VERSION,data=full_dat)
+```
+
+```{r}
+summary(none_model_full)
+```
+
+```{r}
+summary(none_model_red)
+```
+
+```{r}
+anova(none_model_full,none_model_red)
+```
+reject null, take full model 
+
+```{r}
+none_model_full$coefficients
+```
+
+```{r}
+full_dat$none_predict = predict(full_model)
+
+ggplot(data=full_dat, aes(x=mABC_TotalStandardScore,y=SRS_TotalRawScore,col=as.factor(SRS_VERSION))) + 
+  geom_jitter(alpha=0.3,width=0.2,height=0.2) + 
+  geom_abline(slope=none_model_full$coefficients[2],
+              intercept=none_model_full$coefficients[1], 
+              col='red') +
+  geom_abline(slope=none_model_full$coefficients[2],
+              intercept=none_model_full$coefficients[1]+none_model_full$coefficients[4], 
+              col='blue') + 
+  xlab('mABC Total Score') +
+  ylab('SRS Total Score') +
+  ggtitle('Marginal Plot, mABC ManualDexterity Component Standard Score vs. SRS Total Score')
+
+ggplot(full_dat, aes(x=none_predict, y=resid(none_model_full), col=as.factor(SRS_VERSION))) + geom_point()
+qqnorm(resid(none_model_full))
+
+resid = residuals(lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
+GAI_regout = residuals(lm(GAI~ mABC_TotalStandardScore + SRS_VERSION, data=full_dat))
+qplot(x = GAI_regout, y = resid) + geom_smooth(method='lm') + 
+  xlab('GAI (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, GAI vs. SRS Total Score')
+
+man_dext_regout_tss = residuals(lm(mABC_ManualDexterity.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
+qplot(x = man_dext_regout_tss, y = resid) + geom_smooth(method='lm') + 
+  xlab('Manual Dexterity (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, Manual Dexterity vs. SRS Total Score')
+
+aim_catch_regout_tss = residuals(lm(mABC_AimingAndCatching.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
+qplot(x = aim_catch_regout_tss, y = resid) + geom_smooth(method='lm') + 
+  xlab('Aiming and Catching (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, Aiming and Catching vs. SRS Total Score')
+
+balance_regout_tss = residuals(lm(mABC_Balance.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
+qplot(x = balance_regout_tss, y = resid) + geom_smooth(method='lm') + 
+  xlab('Balance (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, Balance vs. SRS Total Score')
+
+age_regout_tss = residuals(lm(mABC_AGE ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
+qplot(x = age_regout_tss, y = resid) + geom_smooth(method='lm') + 
+  xlab('Agee (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, Age vs. SRS Total Score')
+```
+
+```{r}
+plot_model(none_model_full, type = 'pred', terms = c('GAI', 'SRS_VERSION'))
+plot_model(none_model_full, type = 'pred', terms = c('mABC_TotalStandardScore', 'SRS_VERSION'))
+plot_model(none_model_full, type = 'pred', terms = c('SecondaryDiagnosis', 'SRS_VERSION'))
+
+```
+
+Should we include gender?
+```{r}
+red = lm(SRS_TotalRawScore~mABC_TotalStandardScore+SRS_VERSION, data=full_dat)
+
+full = lm(SRS_TotalRawScore~mABC_TotalStandardScore+SRS_VERSION + as.factor(Gender), data=full_dat)
+anova(red,full)
+```
+no, Dont reject null keep reduced model
+
+Should we keep age?
+```{r}
+full = lm(SRS_TotalRawScore~mABC_TotalStandardScore+SRS_VERSION+mABC_AGE, data=full_dat)
+anova(red,full)
+```
+No, Dont reject null keep reduced model
+
+Should we take GAI?
+```{r}
+full = lm(SRS_TotalRawScore~mABC_TotalStandardScore+SRS_VERSION+GAI, data=full_dat)
+anova(red,full)
+```
+yes, reject null, take full model
+
+Should we take version?
+```{r}
+full = lm(SRS_TotalRawScore~mABC_TotalStandardScore+SRS_VERSION,data=full_dat)
+anova(red,full)
+```
+yes, reject null, take full model
+
+Should we include secondary diagnosis?
+```{r}
+full = lm(SRS_TotalRawScore~mABC_TotalStandardScore+SRS_VERSION+SecondaryDiagnosis,data=full_dat)
+anova(red,full)
+```
+yes, reject null take full model.
+
+$$
+
+y_i = \beta_0 + \beta_1 d_0 + \beta_2 X_1 + \beta_3 X_2 + \beta_4 X_3 + \beta_5 X_4\ \\
+
+d_0 = \begin{cases} 
+      1 & version = 2 \\
+      0 & version = 1
+   \end{cases}
+   
+$$
+
+Where $X_1, X_2, X_3, X_4$ are Manual Dexterity, Aiming and Catching, Balance, and GAI respectively.
+

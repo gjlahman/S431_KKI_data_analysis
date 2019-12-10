@@ -51,70 +51,70 @@ full_model = lm(SRS_TotalRawScore~
                   mABC_ManualDexterity.Component.StandardScore+
                   mABC_AimingAndCatching.Component.StandardScore+
                   mABC_Balance.Component.StandardScore,data=full_dat)
+```
 
+```{r}
 summary(red_model)
 summary(full_model)
+```
+
+```{r}
 anova(red_model,full_model)
 plot(density(full_dat$mABC_TotalStandardScore))
 ```
-# take more complicated model (by components)
-## we see an increase in adj R^2 value, a highish F statistic, and a small P-value
-## reject the null and assume that the full model is better so we predict by components
+Reject null, take full model
 
-
-# full model including GAI
 ```{r}
+# full model includinfg GAI
 none_model_full = lm(SRS_TotalRawScore~
                           mABC_ManualDexterity.Component.StandardScore+
                           mABC_AimingAndCatching.Component.StandardScore+
                           mABC_Balance.Component.StandardScore +
-                          GAI + Gender + mABC_AGE + as.factor(SRS_VERSION)
+                          GAI + as.factor(SRS_VERSION)
                           ,data=full_dat)
 
 # reduced model not including GAI
 none_model_red = lm(SRS_TotalRawScore~
                          mABC_ManualDexterity.Component.StandardScore+
                          mABC_AimingAndCatching.Component.StandardScore+
-                         mABC_Balance.Component.StandardScore +
-                         Gender + mABC_AGE + as.factor(SRS_VERSION)
+                         mABC_Balance.Component.StandardScore + as.factor(SRS_VERSION)
                          ,data=full_dat)
+```
 
-final_model = lm(SRS_TotalRawScore~mABC_ManualDexterity.Component.StandardScore+GAI+as.factor(SRS_VERSION),data=full_dat)
-
+```{r}
 summary(none_model_full)
-#summary(none_model_red)
-summary(final_model)
-#anova(none_model_full,none_model_red)
-#anova(FINAL_MODEL,none_model_red)
-
-```
-# we see a slight increase in adj R^2, and end up with a largeish F stat and small P value
-# so we reject the null and assume that the full model is better than the reduced model
-# so we decide to include GAI when analyzing 
-```{r}
-anova(final_model,none_model_full)
 ```
 
 ```{r}
-final_model$coefficients
+summary(none_model_red)
+```
+
+```{r}
+anova(none_model_full,none_model_red)
+```
+reject null, take full model 
+
+```{r}
+none_model_full$coefficients
 ```
 
 ```{r}
 full_dat$none_predict = predict(full_model)
 
-ggplot(data=full_dat, aes(x=mABC_ManualDexterity.Component.StandardScore,y=SRS_TotalRawScore,col=as.factor(SRS_VERSION))) + 
+ggplot(data=full_dat, aes(x=mABC_TotalStandardScore,y=SRS_TotalRawScore,col=as.factor(SRS_VERSION))) + 
   geom_jitter(alpha=0.3,width=0.2,height=0.2) + 
-  geom_abline(slope=final_model$coefficients[2]+final_model$coefficients[3],
-              intercept=final_model$coefficients[1], col='red') +
-  geom_abline(slope=final_model$coefficients[2]+final_model$coefficients[3],
-              intercept=final_model$coefficients[1]+final_model$coefficients[4], col='blue') + 
+  geom_abline(slope=none_model_full$coefficients[2],
+              intercept=none_model_full$coefficients[1], 
+              col='red') +
+  geom_abline(slope=none_model_full$coefficients[2],
+              intercept=none_model_full$coefficients[1]+none_model_full$coefficients[6], 
+              col='blue') + 
   xlab('mABC Total Score') +
   ylab('SRS Total Score') +
   ggtitle('Marginal Plot, mABC ManualDexterity Component Standard Score vs. SRS Total Score')
 
 ggplot(full_dat, aes(x=none_predict, y=resid(none_model_full), col=as.factor(SRS_VERSION))) + geom_point()
 qqnorm(resid(none_model_full))
-
 
 resid = residuals(lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
 GAI_regout = residuals(lm(GAI~ mABC_TotalStandardScore + SRS_VERSION, data=full_dat))
@@ -123,7 +123,6 @@ qplot(x = GAI_regout, y = resid) + geom_smooth(method='lm') +
   ylab('SRS Total Score (prior model residuals)') +
   ggtitle('Added Variable Plot, GAI vs. SRS Total Score')
 
-
 man_dext_regout_tss = residuals(lm(mABC_ManualDexterity.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
 qplot(x = man_dext_regout_tss, y = resid) + geom_smooth(method='lm') + 
   xlab('Manual Dexterity (prior model regressed out)') +
@@ -131,38 +130,98 @@ qplot(x = man_dext_regout_tss, y = resid) + geom_smooth(method='lm') +
   ggtitle('Added Variable Plot, Manual Dexterity vs. SRS Total Score')
 
 aim_catch_regout_tss = residuals(lm(mABC_AimingAndCatching.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
-qplot(x = man_dext_regout_tss, y = resid) + geom_smooth(method='lm') + 
+qplot(x = aim_catch_regout_tss, y = resid) + geom_smooth(method='lm') + 
   xlab('Aiming and Catching (prior model regressed out)') +
   ylab('SRS Total Score (prior model residuals)') +
   ggtitle('Added Variable Plot, Aiming and Catching vs. SRS Total Score')
 
 balance_regout_tss = residuals(lm(mABC_Balance.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
-qplot(x = man_dext_regout_tss, y = resid) + geom_smooth(method='lm') + 
+qplot(x = balance_regout_tss, y = resid) + geom_smooth(method='lm') + 
   xlab('Balance (prior model regressed out)') +
   ylab('SRS Total Score (prior model residuals)') +
   ggtitle('Added Variable Plot, Balance vs. SRS Total Score')
+
+age_regout_tss = residuals(lm(mABC_AGE ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
+qplot(x = age_regout_tss, y = resid) + geom_smooth(method='lm') + 
+  xlab('Agee (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, Age vs. SRS Total Score')
 ```
 
-$$
-y_i = \beta_0 + \beta_1 \gamma + \beta_2 x_2 + \beta_3 x_3 \ \\
+Should we include gender?
+```{r}
+red = lm(SRS_TotalRawScore~
+           mABC_ManualDexterity.Component.StandardScore+
+           mABC_AimingAndCatching.Component.StandardScore+
+           mABC_Balance.Component.StandardScore , data=full_dat)
 
-\gamma = \begin{cases} 
+full = lm(SRS_TotalRawScore~
+            mABC_ManualDexterity.Component.StandardScore+
+            mABC_AimingAndCatching.Component.StandardScore+
+            mABC_Balance.Component.StandardScore +
+            as.factor(Gender), data=full_dat)
+anova(red,full)
+```
+no, Dont reject null keep reduced model
+
+Should we keep age?
+```{r}
+red = lm(SRS_TotalRawScore~
+            mABC_ManualDexterity.Component.StandardScore+
+            mABC_AimingAndCatching.Component.StandardScore+
+            mABC_Balance.Component.StandardScore, data=full_dat)
+
+full = lm(SRS_TotalRawScore~
+            mABC_ManualDexterity.Component.StandardScore+
+            mABC_AimingAndCatching.Component.StandardScore+
+            mABC_Balance.Component.StandardScore +
+            mABC_AGE, data=full_dat)
+anova(red,full)
+```
+No, Dont reject null keep reduced model
+
+Should we take GAI?
+```{r}
+red = lm(SRS_TotalRawScore~
+            mABC_ManualDexterity.Component.StandardScore+
+            mABC_AimingAndCatching.Component.StandardScore+
+            mABC_Balance.Component.StandardScore, data=full_dat)
+
+full = lm(SRS_TotalRawScore~
+            mABC_ManualDexterity.Component.StandardScore+
+            mABC_AimingAndCatching.Component.StandardScore+
+            mABC_Balance.Component.StandardScore+
+            GAI, data=full_dat)
+anova(red,full)
+```
+yes, reject null, take full model
+
+Should we take version?
+```{r}
+red = lm(SRS_TotalRawScore~
+           mABC_ManualDexterity.Component.StandardScore+
+           mABC_AimingAndCatching.Component.StandardScore+
+           mABC_Balance.Component.StandardScore,data=full_dat)
+full = lm(SRS_TotalRawScore~
+            mABC_ManualDexterity.Component.StandardScore+
+            mABC_AimingAndCatching.Component.StandardScore+
+            mABC_Balance.Component.StandardScore+
+            as.factor(SRS_VERSION),data=full_dat)
+anova(red,full)
+```
+yes, reject null, take full model
+
+
+$$
+
+y_i = \beta_0 + \beta_1 d_0 + \beta_2 X_1 + \beta_3 X_2 + \beta_4 X_3 + \beta_5 X_4\ \\
+
+d_0 = \begin{cases} 
       1 & version = 2 \\
       0 & version = 1
    \end{cases}
+   
 $$
 
-$$
-y_i = \beta_0 + d_1\alpha_1 + \beta_1 x_1 + \gamma d_1 x_1 \\
-d_1 = \begin{cases} 
-      1 & version = 2 \\
-      0 & version = 1
-   \end{cases}
-\\
-d_2 = \begin{cases} 
-      1 & SecondaryDiagnosis = yes \\
-      0 &  SecondaryDiagnosis = no
-   \end{cases}
-$$
-
+Where $X_1, X_2, X_3, X_4$ are Manual Dexterity, Aiming and Catching, Balance, and GAI respectively.
 

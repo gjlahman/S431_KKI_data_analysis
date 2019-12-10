@@ -232,8 +232,20 @@ qqline(stdres(lm_mABCbalcubed_sd_sub_interaction_filtered))
 ```
 
 ```{r}
+lm_mABC_sd_sub_interaction_filtered = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION + GAI + SecondaryDiagnosis + ADHD_Subtype, full_dat_ADHD_filtered)
+summary(lm_mABC_sd_sub_interaction_filtered)
+plot(fitted(lm_mABC_sd_sub_interaction_filtered), stdres(lm_mABC_sd_sub_interaction_filtered))
+qqnorm(stdres(lm_mABC_sd_sub_interaction_filtered))
+qqline(stdres(lm_mABC_sd_sub_interaction_filtered))
+```
+
+```{r}
 full_dat_ADHD_filtered$fitted_SRS_TotalRawScore <- 
-predict(lm_mABCbal_sd_sub_interaction_filtered, newdata = full_dat_ADHD_filtered)
+predict(lm_mABC_sd_sub_interaction_filtered, newdata = full_dat_ADHD_filtered)
 
 ggplot(full_dat_ADHD_filtered, aes(mABC_TotalStandardScore, SRS_TotalRawScore)) + geom_point() + geom_jitter() + geom_smooth() + geom_smooth(aes(mABC_TotalStandardScore, fitted_SRS_TotalRawScore), full_dat_ADHD_filtered, method = 'lm', col = 'red', lty = 2)
+```
+
+```{r}
+lm_mABC_sd_sub_interaction_filtered = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION + GAI + SecondaryDiagnosis + ADHD_Subtype, full_dat_ADHD_filtered)
 ```

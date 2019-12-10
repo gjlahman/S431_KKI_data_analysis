@@ -68,6 +68,10 @@ full_dat_autism = full_dat_autism[complete.cases(full_dat_autism),]
 
 full_dat_autism$no_dx = as.factor(full_dat_autism$ADHD_Subtype == 'No dx')
 
+names(full_dat_autism)[names(full_dat_autism) == 'mABC_ManualDexterity.Component.StandardScore'] = 'Manual_Dexterity'
+names(full_dat_autism)[names(full_dat_autism) == 'mABC_Balance.Component.StandardScore'] = 'Balance'
+names(full_dat_autism)[names(full_dat_autism) == 'mABC_AimingAndCatching.Component.StandardScore'] = 'Aiming_Catching'
+
 ```
 
 ## SRS Version
@@ -80,8 +84,8 @@ ggplot(full_dat_autism, aes(x = mABC_TotalStandardScore, y = SRS_TotalRawScore, 
   ylab('SRS Total Score') +
   ggtitle('Marginal Plot, mABC Total Score vs. SRS Total Score')
 
-lm_mABCTot = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore, data = full_dat_autism)
-lm_version = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat_autism)
+lm_mABCTot = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore*no_dx, data = full_dat_autism)
+lm_version = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore*no_dx + SRS_VERSION, data = full_dat_autism)
 ```
 
 
@@ -152,7 +156,8 @@ Components do not add anything
 ## ADHD Subtype as Interaction
 
 ```{r warning=FALSE, message=FALSE}
-lm_adhd = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore*no_dx + SRS_VERSION, data = full_dat_autism)
+lm_adhd = lm(SRS_TotalRawScore ~ mABC_TotalStandardScore*no_dx + SRS_VERSION + GAI, 
+             data = full_dat_autism)
 summary(lm_adhd)
 anova(lm_version, lm_adhd)
 ```
@@ -171,7 +176,24 @@ ggplot(data = full_dat_autism, aes(x = mABC_TotalStandardScore, y = SRS_TotalRaw
   facet_grid(. ~ SRS_VERSION) 
 ```
 
-$y_i = \beta_0 + \beta_1 d_{1i} + \beta_2 X_1 + \beta_3 X_2 $
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(dotwhisker)
+library(broom)
+library(jtools)
+dwplot(lm_adhd)
+plot_summs(lm_adhd, lm_version, scale = TRUE, plot.distributions = TRUE)
+```
+
+```{r echo=FALSE, warning=FALSE, message=FALSE}
+library(sjPlot)
+plot_model(lm_adhd, type = 'pred', terms = c('mABC_TotalStandardScore', 'SRS_VERSION')) + 
+  ggtitle("Effect Plot, mABC Total Standard Score")
+
+plot_model(lm_adhd, type = 'pred', terms = c('no_dx', 'SRS_VERSION')) +
+  ggtitle("Effect Plot, No Dx")
 
 
-
+plot_model(lm_adhd, type = 'pred', terms = c('GAI', 'SRS_VERSION')) +
+  ggtitle("Effect Plot, GAI")
+```

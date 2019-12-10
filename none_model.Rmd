@@ -1,10 +1,10 @@
+```{r}
 library(dplyr)
 library(tidyr)
 library(alr4)
 library(ggplot2)
 library(gridExtra)
 
-setwd('/Users/rowlavel/Documents/Classes/Fall2019/LinearModels/S431_KKI_data_analysis')
 
 kki_demographics = read.csv('data/KKI_demographicInfo.csv')
 kki_handedness = read.csv('data/KKI_handedness.csv')
@@ -32,6 +32,8 @@ full_dat = subset(full_dat, !is.na(WISC_VERSION) & !is.na(SRS_VERSION))
 full_dat = subset(full_dat, ADHD_Subtype %in% c('Combined', 
                                                 'Hyperactive/Impulsive', 
                                                 'Inattentive', 'No dx'))
+nrow(full_dat)
+
 
 full_dat = filter(full_dat, full_dat$PrimaryDiagnosis=='None')
 
@@ -40,7 +42,9 @@ full_dat$hasAutism = as.integer(full_dat$PrimaryDiagnosis == 'Autism')
 
 WISC4_full_dat = subset(full_dat, WISC_VERSION == 4)
 WISC5_full_dat = subset(full_dat, WISC_VERSION == 5)
+```
 
+```{r}
 red_model = lm(SRS_TotalRawScore~mABC_TotalStandardScore, data=full_dat)
 full_model = lm(SRS_TotalRawScore~
                   mABC_ManualDexterity.Component.StandardScore+
@@ -50,12 +54,15 @@ full_model = lm(SRS_TotalRawScore~
 summary(red_model)
 summary(full_model)
 anova(red_model,full_model)
+plot(density(full_dat$mABC_TotalStandardScore))
+```
 # take more complicated model (by components)
 ## we see an increase in adj R^2 value, a highish F statistic, and a small P-value
 ## reject the null and assume that the full model is better so we predict by components
 
 
 # full model including GAI
+```{r}
 none_model_full = lm(SRS_TotalRawScore~
                           mABC_ManualDexterity.Component.StandardScore+
                           mABC_AimingAndCatching.Component.StandardScore+
@@ -71,33 +78,71 @@ none_model_red = lm(SRS_TotalRawScore~
                          Gender + mABC_AGE + as.factor(SRS_VERSION)
                          ,data=full_dat)
 
+FINAL_MODEL = lm(SRS_TotalRawScore~mABC_ManualDexterity.Component.StandardScore+GAI + as.factor(SRS_VERSION),data=full_dat)
+
 summary(none_model_full)
 summary(none_model_red)
+summary(FINAL_MODEL)
 anova(none_model_full,none_model_red)
+anova(FINAL_MODEL,none_model_red)
+```
 # we see a slight increase in adj R^2, and end up with a largeish F stat and small P value
 # so we reject the null and assume that the full model is better than the reduced model
 # so we decide to include GAI when analyzing 
 
-
+```{r}
 full_dat$none_predict = predict(none_model_full)
 
-ggplot(data=full_dat, aes(x=mABC_TotalStandardScore,y=SRS_TotalRawScore,col=as.factor(SRS_VERSION))) + 
+ggplot(data=full_dat, aes(x=mABC_ManualDexterity.Component.StandardScore,y=SRS_TotalRawScore,col=as.factor(SRS_VERSION))) + 
   geom_jitter(alpha=0.3,width=0.2,height=0.2) + 
   geom_abline(slope=none_model_full$coefficients[2],
               intercept=none_model_full$coefficients[1], col='red') +
   geom_abline(slope=none_model_full$coefficients[2],
-              intercept=none_model_full$coefficients[1]+none_model_full$coefficients[8], col='blue')
+              intercept=none_model_full$coefficients[1]+none_model_full$coefficients[8], col='blue') + 
+  xlab('mABC Manual Dexterity Component') +
+  ylab('SRS Total Score') +
+  ggtitle('Marginal Plot, mABC Manual Dexterity Component vs. SRS Total Score')
+
 
 ggplot(full_dat, aes(x=none_predict, y=resid(none_model_full), col=as.factor(SRS_VERSION))) + geom_point()
 qqnorm(resid(none_model_full))
 
 
-resid = residuals(none_model_red)
+resid = residuals(lm(SRS_TotalRawScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
 GAI_regout = residuals(lm(GAI~ mABC_TotalStandardScore + SRS_VERSION, data=full_dat))
-qplot(x = GAI_regout, y = resid) + geom_smooth(method='lm')
+qplot(x = GAI_regout, y = resid) + geom_smooth(method='lm') + 
+  xlab('GAI (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, GAI vs. SRS Total Score')
 
 
+man_dext_regout_tss = residuals(lm(mABC_ManualDexterity.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
+qplot(x = man_dext_regout_tss, y = resid) + geom_smooth(method='lm') + 
+  xlab('Manual Dexterity (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, Manual Dexterity vs. SRS Total Score')
 
+aim_catch_regout_tss = residuals(lm(mABC_AimingAndCatching.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
+qplot(x = man_dext_regout_tss, y = resid) + geom_smooth(method='lm') + 
+  xlab('Aiming and Catching (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, Aiming and Catching vs. SRS Total Score')
+
+balance_regout_tss = residuals(lm(mABC_Balance.Component.StandardScore ~ mABC_TotalStandardScore + SRS_VERSION, data = full_dat))
+qplot(x = man_dext_regout_tss, y = resid) + geom_smooth(method='lm') + 
+  xlab('Balance (prior model regressed out)') +
+  ylab('SRS Total Score (prior model residuals)') +
+  ggtitle('Added Variable Plot, Balance vs. SRS Total Score')
+```
+
+$$
+y_i = \beta_0 + \beta_1 \gamma + \beta_2 x_2 + \beta_3 x_3 \ \\
+
+\gamma = \begin{cases} 
+      1 & version = 2 \\
+      0 & version = 1
+   \end{cases}
+$$
 
 
 

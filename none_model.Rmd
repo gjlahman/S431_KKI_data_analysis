@@ -197,8 +197,13 @@ d_0 = \begin{cases}
       1 & version = 2 \\
       0 & version = 1
    \end{cases}
+
+d_1 = \begin{cases} 
+      1 & SecondaryDiagnosis = yes \\
+      0 & SecondaryDiagnosis = no
+   \end{cases}
    
 $$
 
-Where $X_1, X_2, X_3, X_4$ are Manual Dexterity, Aiming and Catching, Balance, and GAI respectively.
+Where $X_1, X_2, X_3, X_4$ are Total Standard Score, GAI, SRS Version
 
